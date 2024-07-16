@@ -1,0 +1,42 @@
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
+
+class UserRegisterForm(UserCreationForm):
+    SELLER_CHOICES = [
+        (True, 'Sí'),
+        (False, 'No'),
+    ]
+    is_seller = forms.ChoiceField(choices=SELLER_CHOICES, help_text="Campo Requerido")
+
+
+    class Meta:
+        model = User
+        fields = [
+            "username",
+            "password1",
+            "password2",
+            "first_name",
+            "last_name",
+            "is_seller"
+        ]
+
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control custom-class'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control custom-class'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control custom-class'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control custom-class', 'required':'required'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control custom-class', 'required':'required'}),
+            'is_seller': forms.Select(attrs={'class': 'form-control custom-class'}),
+        }
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_seller = self.cleaned_data.get("is_seller")
+        user.is_staff = False
+        user.is_superuser = False
+        if commit:
+            user.save()
+        return user
+    
