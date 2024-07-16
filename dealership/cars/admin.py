@@ -30,4 +30,12 @@ class CarAdmin(admin.ModelAdmin):
     list_display = (
         'car_model',
         'category',
+        'get_brand', 
+        
     )
+
+    def get_brand(self, obj):
+        return obj.car_model.brand.name
+    
+    get_brand.short_description = 'Brand'
+        
