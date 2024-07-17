@@ -31,11 +31,10 @@ class UserRegisterForm(UserCreationForm):
         }
 
     def save(self, commit=True):
-        user = super().save(commit=False)
-        if commit:
-            user.save()
-        profile = Profile.objects.create(
-            user=user,
-            is_seller=self.cleaned_data['is_seller'],
-        )
-        return user
+            user = super().save(commit=False)
+            if commit:
+                user.save()
+                profile = user.profile
+                profile.is_seller = self.cleaned_data['is_seller']
+                profile.save()
+            return user
