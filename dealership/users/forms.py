@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
     SELLER_CHOICES = [
@@ -9,7 +10,6 @@ class UserRegisterForm(UserCreationForm):
         (False, 'No'),
     ]
     is_seller = forms.ChoiceField(choices=SELLER_CHOICES, help_text="Campo Requerido")
-
 
     class Meta:
         model = User
@@ -19,7 +19,6 @@ class UserRegisterForm(UserCreationForm):
             "password2",
             "first_name",
             "last_name",
-            "is_seller"
         ]
 
         widgets = {
@@ -33,10 +32,10 @@ class UserRegisterForm(UserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.is_seller = self.cleaned_data.get("is_seller")
-        user.is_staff = False
-        user.is_superuser = False
         if commit:
             user.save()
+        profile = Profile.objects.create(
+            user=user,
+            is_seller=self.cleaned_data['is_seller'],
+        )
         return user
-    

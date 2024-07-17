@@ -27,8 +27,8 @@ class RegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            return redirect("index")
+            # login(request, user)
+            return redirect("register")
         return render(
             request,
             self.template_name,
