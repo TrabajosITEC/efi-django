@@ -11,7 +11,7 @@ from django.views import (
 
 )
 
-# from users.forms import UserRegisterForm
+from users.forms import UserRegisterForm
 
 class LoginView(View):
     def get(self, request): # Renderiza el formulario.
@@ -46,6 +46,36 @@ class LogoutView(View):
         
         return redirect('login')
     
+# Create your views here.
+
+class RegisterView(View):
+    form_class = UserRegisterForm
+    template_name = 'home/register.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(
+            request,
+            self.template_name,
+            dict(
+                form=form
+            )
+        )
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("register")
+        return render(
+            request,
+            self.template_name,
+            dict(
+                form=form
+            )
+        )
+
 # class RegisterView(View):
 #     form_class = UserRegisterForm
 #     template = 'home/register.html'
