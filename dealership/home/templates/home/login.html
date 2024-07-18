@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}Regístrate | AutoMundo {% endblock %}
+
+{% block content %}
+    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 95px;"> 
+      <div class="row align-items-stretch w-75">
+        <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
+          <img src="{% static 'home/images/person-vcard.svg' %}" alt="" class="img-form">
+        </div>
+        <div class="col-md-9 m-0 p-0">
+          <div class="container-form shadow p-5">
+            <form class="form-login" method="POST" action="{% url 'login' %}">
+              <h2 class="mb-5 text-center title"><b>Ingresá tus datos</b></h2>
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="text" class="form-control mb-3" id="username" name="username" placeholder="Usuario">
+                <input type="password" class="form-control mb-3" id="password" name="password" placeholder="Contraseña">
+              </div>
+              <div class="container-login-btn d-flex justify-content-center aling-items-center">
+                <button type="submit" class="button-53 bg-primary m-2">Ingresar</button>
+                <a href="{% url 'register' %}" class="text-decoration-none ms-4 text-left text-dark title">¿No tenés una cuenta? Registrate gratis</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
