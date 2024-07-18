@@ -13,19 +13,7 @@
             <p style="color: red;">{{form.username.errors}}</p>
         {% endif %}
     </div>
-
-    <div class="row">
-        <label for="">Vendedor</label>
-        {{form.is_seller}}
-        
-        {% if form.email.errors %}
-            <p style="color: red;">{{form.email.errors}}</p>
-        {% endif %}
-    </div>
-
-    <div class="row">
-        
-    </div>
+    
     <div class="row">
         <label for="">Contraseña</label>
         {{form.password1}}
@@ -34,7 +22,7 @@
             <p style="color: red;">{{form.password1.errors}}</p>
         {% endif %}    
     </div>
-
+    
     <div class="row">
         <label for="">Repita Contraseña</label>
         {{form.password2}}
@@ -43,15 +31,44 @@
             <p style="color: red;">{{form.password2.errors}}</p>
         {% endif %}
     </div>
+    
+    <div class="row">
+        <label for="">Nombre</label>
+        {{form.first_name}}
 
+        {% if form.first_name.errors %}
+            <p style="color: red;">{{form.first_name.errors}}</p>
+        {% endif %}
+    </div>
 
-    <label for="">Nombre</label>
-    {{form.first_name}}
+    <div class="row">
+        <label for="">Apellido</label>
+        {{form.last_name}}
 
-    <label for="">Apellido</label>
-    {{form.last_name}}
+        {% if form.last_name.errors %}
+            <p style="color: red;">{{form.last_name.errors}}</p>
+        {% endif %}
+    </div>
 
-    <button type="submit" class="btn btn-success">Registrarme</button>
+    <div class="row">
+        <label for="">Correo Electronico</label>
+        {{form.email}}
+
+        {% if form.email.errors %}
+            <p style="color: red;">{{form.email.errors}}</p>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <label for="">Vendedor</label>
+        {{form.is_seller}}
+        
+        {% if form.is_seller.errors %}
+            <p style="color: red;">{{form.is_seller.errors}}</p>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-success mt-5">Registrarme</button>
 
 </form>
 {% endblock %}
