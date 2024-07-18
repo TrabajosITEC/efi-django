@@ -13,6 +13,39 @@ from django.views import (
 
 from users.forms import UserRegisterForm
 
+class LoginView(View):
+    def get(self, request): # Renderiza el formulario.
+        return render(
+            request, 
+            'home/login.html'
+        
+        )
+    
+    def post(self, request): # Información que envía el usuario.
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if username and password:
+            user = authenticate(
+                request,
+                username = username,
+                password = password
+
+            )
+
+            if user:
+                login(request, user) # Hacemos uso de la función que importamos más arriba
+
+                return redirect('index')
+        
+        return redirect('login')
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        
+        return redirect('login')
+
 class RegisterView(View):
     form_class = UserRegisterForm
     template = 'home/register.html'
@@ -30,7 +63,7 @@ class RegisterView(View):
 
         )
     
-    """  def post(self, request):
+    def post(self, request):
         form = self.form_class(request.POST)
 
         if form.is_valid():
@@ -48,7 +81,7 @@ class RegisterView(View):
 
                 )
 
-            ) """
+            )
 
 class IndexView(View):
     def get(self, request):

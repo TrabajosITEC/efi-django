@@ -25,6 +25,11 @@ form{
   
 }
 
+.form-login{
+  margin-top: 200px;
+
+}
+
 .title{
   font-family: var(--font-titles);
   letter-spacing: 1px;
@@ -37,8 +42,8 @@ form{
 
 }
 
-.container-register-btn{
-  margin-top: 110px;
+.container-register-btn, .container-login-btn{
+  margin-top: 90px;
 
 
 }
