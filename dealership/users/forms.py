@@ -9,7 +9,7 @@ class UserRegisterForm(UserCreationForm):
         (True, 'Sí'),
         (False, 'No'),
     ]
-    is_seller = forms.ChoiceField(choices=SELLER_CHOICES, help_text="Campo Requerido", label=" Es vendedor?")
+    is_seller = forms.ChoiceField(choices=SELLER_CHOICES, help_text="Campo Requerido", label="Vendedor")
 
     password1 = forms.CharField(
         widget = forms.PasswordInput(attrs = {'class': 'form-control m-3', 'placeholder': 'Contraseña'})

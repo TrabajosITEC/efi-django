@@ -41,14 +41,18 @@
                     <p class="text-danger">{{ form.password2.errors }}</p>
                 {% endif %}
               </div>
-              <div class="input-group">
-                {{ form.is_seller.label_tag }} {{ form.is_seller }}
-                
+              <div class="input-group d-flex justify-content-center align-items-center mt-5">
+                <div class="me-2">
+                  {{ form.is_seller.label_tag }} 
+                </div>
+                <div>
+                  {{ form.is_seller }}
+                </div>
                 
                 {% if form.is_seller.errors %}
                     <p class="text-danger">{{form.is_seller.errors}}</p>
                 {% endif %}
-            </div>
+              </div>
               <div class="ms-4 d-flex justify-content-center align-items-center container-register-btn">
                 <button type="submit" class="button-53 bg-success mt-3 mb-3 w-50">Registrarme</button>
                 <a class="text-decoration-none ms-4 text-center text-dark title" href="{% url 'login' %}">¿Ya tenés cuenta? Iniciá sesión</a>
