@@ -3,5 +3,11 @@
 {% block title %}Inicio | AutoMundo {% endblock %}
 
 {% block content %}
-  <h1>Este es el índex</h1>
+  {% if user.profile.is_seller %}
+    <h1>Soy el perfil del usuario vendedor de nombre {{ user.first_name }}</h1>
+  {% elif user.is_staff %}
+    <h1>Soy el perfil del usuario administrador de nombre {{ user.first_name }}</h1>
+  {% else %}
+    <h1>Soy el perfil del usuario comprador de nombre {{ user.first_name }}</h1>
+  {% endif %}
 {% endblock %}

@@ -10,6 +10,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    # La señal se va a ejecutar cada vez que se ejecute User, no importa que sea en otra app.
+    # Ejecutada User se ejecuta "Profile.objects.create(user=instance)" y ahi se guarda en la base de datos.
+    # Profile se crea aca y despues se guarda en el save del form
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:

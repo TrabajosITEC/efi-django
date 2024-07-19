@@ -24,5 +24,3 @@ class ProfileAdmin(admin.ModelAdmin):
         e_mail = obj.user.email
         return e_mail
     get_e_mail.short_description = 'Email'
-
-    
