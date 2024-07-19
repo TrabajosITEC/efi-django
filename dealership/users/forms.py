@@ -2,65 +2,39 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(
-        required = True,
-        help_text = 'Email requerido',
-        widget = forms.EmailInput(attrs = {'class': 'form-control m-3', 'required': 'required', 'placeholder': 'Email'})
-    
-    )
-
-    password1 = forms.CharField(
-        widget = forms.PasswordInput(attrs = {'class': 'form-control m-3', 'placeholder': 'Contraseña'})
-    
-    )
-    
-    password2 = forms.CharField(
-        widget = forms.PasswordInput(attrs = {'class': 'form-control m-3', 'placeholder': 'Repetir contraseña'})
-    
-    )
+    SELLER_CHOICES = [
+        (True, 'Sí'),
+        (False, 'No'),
+    ]
+    is_seller = forms.ChoiceField(choices=SELLER_CHOICES, help_text="Campo Requerido")
 
     class Meta:
         model = User
         fields = [
-            'username',
-            'email',
-            'password1',
-            'password2',
-            'first_name',
-            'last_name'
-
+            "username",
+            "password1",
+            "password2",
+            "first_name",
+            "last_name",
         ]
 
         widgets = {
-            'username': forms.TextInput(attrs = {'class': 'form-control m-3', 'required': 'required', 'placeholder': 'Nombre de usuario'}),
-            
-            'email': forms.EmailInput(attrs = {'class': 'form-control m-3', 'required': 'required'}),
-
-            'first_name': forms.TextInput(attrs = {'class': 'form-control m-3', 'required': 'required', 'placeholder': 'Nombre'}),
-            
-            'last_name': forms.TextInput(attrs = {'class': 'form-control m-3', 'required': 'required', 'placeholder': 'Apellido'})
-
+            'username': forms.TextInput(attrs={'class': 'form-control custom-class'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control custom-class'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control custom-class'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control custom-class', 'required':'required'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control custom-class', 'required':'required'}),
+            'is_seller': forms.Select(attrs={'class': 'form-control custom-class'}),
         }
 
-        def clean_email(self):
-            email = self.cleaned_data.get('email')
-            email_exists = User.objects.filter(email = email).exists()
-            
-            if email_exists:
-                raise ValidationError('¡El email ingresado ya existe!')
-            
-            return email
-        
-        def save(self, commit = True):
-            user = super().save(commit = False)
-            user.email = self.cleaned_data.get('email')
-            user.is_staff = False
-            user.is_superuser = False
-
+    def save(self, commit=True):
+            user = super().save(commit=False)
             if commit:
                 user.save()
-            
+                profile = user.profile
+                profile.is_seller = self.cleaned_data['is_seller']
+                profile.save()
             return user
-
