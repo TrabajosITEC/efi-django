@@ -1,0 +1,16 @@
+{% extends "home/base.html" %}
+{% block content %}
+<div class="container mt-3">
+    <h2>Detalles de Auto</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{car.car_model.brand.name}} {{ car.car_model.name }} {{ car.category.name}}</h5>
+            {% if user.is_staff %}
+            <a href="{% url 'car_update' car.id %}" class="btn btn-primary">Editar</a>
+            <a href="{% url 'car_delete' car.id %}" class="btn btn-danger">Eliminar</a>
+            {% endif %}
+            <a href="{% url 'car_list' %}" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

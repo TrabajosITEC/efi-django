@@ -1,0 +1,16 @@
+{% extends "home/base.html" %}
+{% block content %}
+{% if user.is_staff %}
+<div class="container mt-3">
+    <h2>Actualizar Marca</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Nombre</label>
+            {{ form.name }}
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}
