@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+{% block content%}
+
+<div class="container mt-3">
+   <h2>Lista de Marcas</h2>
+   {% if user.is_staff %}
+   <a href="{% url 'brand_create' %}" class="btn btn-primary mb-3">Crear Marca</a>
+   {% endif %}
+   <table class="table table-striped">
+       <thead>
+           <tr>
+               <th>Nombre</th>
+               <th>Acciones</th>
+           </tr>
+       </thead>
+       <tbody>
+         {% for brand in brands %}
+           <tr>
+               <td>{{ brand.name }}</td>
+               <td>
+                   <a href="{% url 'brand_detail' brand.id %}" class="btn btn-info btn-sm">Detalles</a>
+                   {% if user.is_staff %}
+                   <a href="{% url 'brand_update' brand.id %}" class="btn btn-success btn-sm">Editar</a>
+                   <a href="{% url 'brand_delete' brand.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                   {% endif %}
+               </td>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+</div>
+{% endblock %}
