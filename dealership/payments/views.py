@@ -8,7 +8,7 @@ from payments.forms import PaymentsForm
 from payments.repositories.paymente_repositorie import PaymentRepository
 repo_payment = PaymentRepository()
 
-class payment_list(View):
+class PaymentList(View):
     def get(self, request):
         payments = repo_payment.get_all()
         return render(
@@ -19,7 +19,7 @@ class payment_list(View):
             )
         )
 
-class create_payment(View):
+class CreatePayment(View):
     def get(self, request):
             form = PaymentsForm()
             
@@ -39,13 +39,13 @@ class create_payment(View):
                 )
                 return redirect ('listPayment')
 
-class payment_delete(View):
+class PaymentDelete(View):
     def get(self, request, id):
         payment = repo_payment.get_by_id(id=id) 
         repo_payment.delete(payment=payment)
         return redirect('listPayment')
     
-class payment_update(View):
+class PaymentUpdate(View):
     def get(self, request, id):
         payment = repo_payment.get_by_id(id=id)
 
