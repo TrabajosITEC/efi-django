@@ -78,10 +78,8 @@ class RegisterView(View):
             request,
             self.template_name,
             dict(
-                form = form
-            
+                form=form
             )
-        
         )
 
 class IndexView(View):
