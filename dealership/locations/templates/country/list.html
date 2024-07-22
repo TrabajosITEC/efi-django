@@ -1,1 +1,48 @@
-<h4>Country List</h4>
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %} Países | AutoMundo {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'country/css/country-styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+    <h2 class="text-center mb-4 title">Países registrados</h2>
+    <a href="{% url 'country_create' %}" class="btn btn-dark mb-3 w-50">Registrar País</a>
+    <div class="horizontal-rule mt-4"></div>
+  </div>
+  <table class="table table-striped border-dark">
+    <thead>
+      <tr>
+        <th class="bg-secondary border">ID</th>
+        <th class="bg-secondary border">País</th>
+        <th class="bg-secondary border">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for country in countries %}
+      <tr>
+        <td class="align-middle font-numbers">{{ country.id }}</td>
+        <td class="align-middle">{{ country.name }}</td>
+        <td>
+          <a href="{% url 'country_detail' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+            <img src="{% static 'images/three-dots.svg' %}" class="" alt="Editar País" title="Más información">
+          </a>
+            {% if user.is_authenticated %}
+              <a href="{% url 'country_delete' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+                <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
+              </a>
+              <a href="{% url 'country_update' country.id %}" class="btn btn-outline-dark text-decoration-none">
+                <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
+              </a>
+            {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div> 
+{% endblock %}
