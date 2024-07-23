@@ -43,16 +43,23 @@
       {% endif %}
     </div>
   </nav>
+  <div class="bg-dark">
 
-  {% if user.is_staff %}
+    {% if user.is_authenticated %}
+      {% if not user.is_staff %}
+        <p class="text-center text-white p-2"><i>Bienvenido {{user.first_name}}</i> a AutoMundo</p>
+      {% endif %}
+    {% endif %}  
+    
+    {% if user.is_staff %}
     <button
-      class="btn btn-primary"
+      class="btn p-2"
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#Id1"
       aria-controls="Id1"
     >
-      Enable both scrolling & backdrop
+      <img class="hamburguer-logo mx-2" src="{% static 'home/images/list.svg' %}">
     </button>
     
     <div
@@ -63,8 +70,8 @@
       aria-labelledby="Enable both scrolling & backdrop"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="Enable both scrolling & backdrop">
-          Backdrop with scrolling
+        <h5 class="offcanvas-title subtitle" id="Enable both scrolling & backdrop">
+          Bievenido al Sistema
         </h5>
         <button
           type="button"
@@ -74,12 +81,14 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <p>
-          <a href="{% url 'logout' %}" class="btn w-100 btn-outline-dark p-2">Cerrar Sesión</a>
+        <p class="ms-2">
+          <a href="{% url 'countries_list' %}" class="p-2 text-decoration-none text-dark">Ver Países</a>
+          <hr>
         </p>
       </div>
     </div>
   {% endif %}
+  </div>
   <div class="container mt-4">
     {% block content %}
     {% endblock %}

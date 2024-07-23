@@ -14,7 +14,7 @@
     <a href="{% url 'country_create' %}" class="btn btn-dark mb-3 w-50">Registrar País</a>
     <div class="horizontal-rule mt-4"></div>
   </div>
-  <table class="table table-striped border-dark">
+  <table class="table table-striped border-dark shadow">
     <thead>
       <tr>
         <th class="bg-secondary border">ID</th>
@@ -25,20 +25,18 @@
     <tbody>
       {% for country in countries %}
       <tr>
-        <td class="align-middle font-numbers">{{ country.id }}</td>
+        <td class="align-middle subtitle">{{ country.id }}</td>
         <td class="align-middle">{{ country.name }}</td>
         <td>
           <a href="{% url 'country_detail' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
             <img src="{% static 'images/three-dots.svg' %}" class="" alt="Editar País" title="Más información">
           </a>
-            {% if user.is_authenticated %}
-              <a href="{% url 'country_delete' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
-                <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
-              </a>
-              <a href="{% url 'country_update' country.id %}" class="btn btn-outline-dark text-decoration-none">
-                <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
-              </a>
-            {% endif %}
+          <a href="{% url 'country_delete' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+            <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
+          </a>
+          <a href="{% url 'country_update' country.id %}" class="btn btn-outline-dark text-decoration-none">
+            <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
+          </a>
         </td>
       </tr>
       {% endfor %}

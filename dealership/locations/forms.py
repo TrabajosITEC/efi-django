@@ -16,7 +16,7 @@ class CountryForm(forms.ModelForm):
         ]
 
         widgets = {
-            'name': forms.TextInput(attrs = {'class': 'form-control'})
+            'name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Nombre del País'})
 
         }
 
