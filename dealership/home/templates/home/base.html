@@ -81,10 +81,11 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <p class="ms-2">
-          <a href="{% url 'countries_list' %}" class="p-2 text-decoration-none text-dark">Ver Países</a>
-          <hr>
-        </p>
+        <h6 class="mb-4"><b>Localizaciones</b></h6>
+        <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Ver Países</a></ul>
+        <hr>
+        <a href="{% url 'provinces_list' %}" class="link p-2 text-decoration-none text-dark">Ver Provincias</a>
+        <hr>
       </div>
     </div>
   {% endif %}

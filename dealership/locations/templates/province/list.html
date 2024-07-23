@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} Localizaciones - Países | AutoMundo {% endblock %}
+{% block title %} Localizaciones - Provincias | AutoMundo {% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/css/styles-location.css' %}">
@@ -10,31 +10,33 @@
 {% block content %}
 <div class="container">
   <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-    <h2 class="text-center mb-4 title">Países registrados</h2>
-    <a href="{% url 'country_create' %}" class="btn btn-dark mb-3 w-50">Registrar País</a>
+    <h2 class="text-center mb-4 title">Provincias registradas</h2>
+    <a href="{% url 'province_create' %}" class="btn btn-dark mb-3 w-50">Registrar Provincia</a>
     <div class="horizontal-rule mt-4"></div>
   </div>
   <table class="table table-striped border-dark shadow">
     <thead>
       <tr>
         <th class="bg-secondary border">ID</th>
+        <th class="bg-secondary border">Provincia</th>
         <th class="bg-secondary border">País</th>
         <th class="bg-secondary border">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      {% for country in countries %}
+      {% for province in provinces %}
       <tr>
-        <td class="align-middle subtitle">{{ country.id }}</td>
-        <td class="align-middle">{{ country.name }}</td>
+        <td class="align-middle subtitle">{{ province.id }}</td>
+        <td class="align-middle">{{ province.name }}</td>
+        <td class="align-middle">{{ province.country }}</td>
         <td>
-          <a href="{% url 'country_detail' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'province_detail' province.id %}" class="btn btn-outline-dark text-decoration-none me-1">
             <img src="{% static 'images/three-dots.svg' %}" class="" alt="Editar País" title="Más información">
           </a>
-          <a href="{% url 'country_delete' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'province_delete' province.id %}" class="btn btn-outline-dark text-decoration-none me-1">
             <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
           </a>
-          <a href="{% url 'country_update' country.id %}" class="btn btn-outline-dark text-decoration-none">
+          <a href="{% url 'province_update' province.id %}" class="btn btn-outline-dark text-decoration-none">
             <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
           </a>
         </td>

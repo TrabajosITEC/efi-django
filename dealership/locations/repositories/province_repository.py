@@ -47,8 +47,9 @@ class ProvinceRepository:
 
         )
     
-    def update(self, province: Province, name: str) -> Province:
-        province.name = name 
+    def update(self, province: Province, name: str, country_id: int) -> Province:
+        province.name = name
+        province.country = country_id
 
         province.save()
     

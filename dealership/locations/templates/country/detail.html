@@ -4,7 +4,7 @@
 {% block title %} Localizaciones - Países | AutoMundo {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'country/css/country-styles.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/css/styles-location.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
   <div class="mt-5 w-75 mx-auto">
     <div class="d-flex flex-column align-items-center">
       <div class="form-group row w-100">
-        <div class="col-sm-12 d-flex justify-content-center gap-3">
+        <div class="col-lg-12 d-flex justify-content-center gap-3">
           <a href="{% url 'country_delete' country.id %}" class="btn btn-outline-dark w-50 mt-3">Borrar</a>
           <a href="{% url 'country_update' country.id %}" class="btn btn-outline-dark w-50 mt-3">Editar</a>
         </div>
