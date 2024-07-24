@@ -1,3 +1,12 @@
 from django.contrib import admin
+from offer.models import (
+    Offer
+)
 
-# Register your models here.
+@admin.register(Offer)
+class OfferAdmin(admin.ModelAdmin):
+    list_display = (
+        'cars',
+        'location',
+        'price',
+    )

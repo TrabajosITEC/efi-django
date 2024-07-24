@@ -1,10 +1,15 @@
 from django import forms    
-from ..cars.models import Car
+from cars.models import Car
+from cars.repositories.car import CarRepository
+from locations.repositories.locality_repository import LocalityRepository
+repo_car = CarRepository()
+repo_loc = LocalityRepository()
 
 from offer.models import Offer
 
 class OfferForm(forms.ModelForm):
-    cars = forms.ModelChoiceField(queryset=Car.objects.all())
+    cars = forms.ModelChoiceField(queryset=repo_car.get_all())
+    location = forms.ModelChoiceField(queryset=repo_loc.get_all())
 
     class Meta:
         model = Offer
@@ -13,12 +18,13 @@ class OfferForm(forms.ModelForm):
             "location",
             "price"
         ]
+
         widgets = {
-            "cars": forms.Select()
+            "cars": forms.Select(),
+            "location": forms.Select(),
+            "price": forms.NumberInput(attrs={"class": "form-control"}),
         }
-#   widgets = {
-#             "name": forms.TextInput(attrs={'class': 'form-control m-3','placeholder': 'Metodo de pago'}),
-#         }
+
 # __all__ = (
 #     "Media",
 #     "MediaDefiningClass",

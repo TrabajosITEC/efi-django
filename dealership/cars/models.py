@@ -34,3 +34,6 @@ class Car(models.Model):
         related_name = 'categories',
         null=False
     )
+    def __str__(self):
+        return  f"{self.car_model.brand.name} {self.car_model.name} - {self.category.name} "
+    
