@@ -31,7 +31,7 @@ class ProvinceForm(forms.ModelForm):
         ]
 
         widgets = {
-            'name': forms.TextInput(attrs = {'class': 'form-control text-center', 'placeholder': 'Nombre de la Provincia'}),
+            'name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Nombre de la Provincia'}),
             'country': forms.Select(attrs = {'class': 'form-control text-center'})
 
         }
@@ -57,3 +57,8 @@ class LocalityForm(forms.ModelForm):
             'province': forms.Select(attrs = {'class': 'form-control'})
 
         }
+
+    def __init__(self, *args, **kwargs):
+        super(LocalityForm, self).__init__(*args, **kwargs)
+    
+        self.fields['province'].empty_label = 'Seleccione una provincia'

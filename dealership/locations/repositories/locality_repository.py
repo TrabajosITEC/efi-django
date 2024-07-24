@@ -44,8 +44,9 @@ class LocalityRepository:
 
         )
     
-    def update(self, locality: Locality, name: str) -> Locality:
-        locality.name = name 
+    def update(self, locality: Locality, name: str, province_id: int) -> Locality:
+        locality.name = name
+        locality.province = province_id 
 
         locality.save()
 

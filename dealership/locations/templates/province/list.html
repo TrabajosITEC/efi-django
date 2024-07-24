@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container mb-5">
   <div class="d-flex flex-column justify-content-center align-items-center mt-5">
     <h2 class="text-center mb-4 title">Provincias registradas</h2>
     <a href="{% url 'province_create' %}" class="btn btn-dark mb-3 w-50">Registrar Provincia</a>
@@ -31,13 +31,13 @@
         <td class="align-middle">{{ province.country }}</td>
         <td>
           <a href="{% url 'province_detail' province.id %}" class="btn btn-outline-dark text-decoration-none me-1">
-            <img src="{% static 'images/three-dots.svg' %}" class="" alt="Editar País" title="Más información">
+            <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalles Provincia" title="Más información">
           </a>
           <a href="{% url 'province_delete' province.id %}" class="btn btn-outline-dark text-decoration-none me-1">
-            <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
+            <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar Provincia">
           </a>
           <a href="{% url 'province_update' province.id %}" class="btn btn-outline-dark text-decoration-none">
-            <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
+            <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar Provincia">
           </a>
         </td>
       </tr>

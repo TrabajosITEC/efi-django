@@ -9,6 +9,15 @@ from locations.views.country_views import (
 
 )
 
+from locations.views.locality_views import(
+    LocalityList,
+    LocalityCreate,
+    LocalityDetail,
+    LocalityDelete,
+    LocalityUpdate
+
+)
+
 from locations.views.province_views import(
     ProvinceList,
     ProvinceCreate,
@@ -32,5 +41,12 @@ urlpatterns = [
     path(route = 'province_detail/<int:id>/', view = ProvinceDetail.as_view(), name = 'province_detail'),
     path(route = 'province_delete/<int:id>/', view = ProvinceDelete.as_view(), name = 'province_delete'),
     path(route = 'province_update/<int:id>/', view = ProvinceUpdate.as_view(), name = 'province_update'),
+
+    # --- Rutas para Localidades --- # 
+    path(route = 'localities/', view = LocalityList.as_view(), name = 'localities_list'),
+    path(route = 'locality_create/', view = LocalityCreate.as_view(), name = 'locality_create'),
+    path(route = 'locality_detail/<int:id>', view = LocalityDetail.as_view(), name = 'locality_detail'),
+    path(route = 'locality_delete/<int:id>', view = LocalityDelete.as_view(), name = 'locality_delete'),
+    path(route = 'locality_update/<int:id>', view = LocalityUpdate.as_view(), name = 'locality_update')
 
 ]
