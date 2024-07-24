@@ -13,8 +13,10 @@ class OfferRepository:
             cars: Car,
             location: Locality,
             price: float,
+            year: int,
     ) : return Offer.objects.create(
         cars=cars,
         location=location,
         price=price,
+        year=year,
     )

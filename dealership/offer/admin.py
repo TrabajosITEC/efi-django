@@ -9,4 +9,5 @@ class OfferAdmin(admin.ModelAdmin):
         'cars',
         'location',
         'price',
+        'year',
     )

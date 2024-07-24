@@ -16,13 +16,15 @@ class OfferForm(forms.ModelForm):
         fields = [
             "cars",
             "location",
-            "price"
+            "price",
+            "year"
         ]
 
         widgets = {
             "cars": forms.Select(),
             "location": forms.Select(),
             "price": forms.NumberInput(attrs={"class": "form-control"}),
+            "year": forms.NumberInput(attrs={"class": "form-control"}),
         }
 
 # __all__ = (

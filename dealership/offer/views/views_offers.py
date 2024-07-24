@@ -34,6 +34,7 @@ class OffertCreate(View):
             repo_off.create(
                 cars=form.cleaned_data['cars'],
                 location=form.cleaned_data['location'],
-                price=form.cleaned_data['price']
+                price=form.cleaned_data['price'],
+                year=form.cleaned_data['year']
             )
             return redirect('listOffers')

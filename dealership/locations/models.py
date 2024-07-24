@@ -33,4 +33,4 @@ class Locality(models.Model):
     province = models.ForeignKey(Province, on_delete = models.CASCADE)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.name} - ({self.province.name} - {self.province.country}) "

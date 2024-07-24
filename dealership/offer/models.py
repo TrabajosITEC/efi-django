@@ -24,6 +24,9 @@ class Offer(models.Model):
         decimal_places=2,
         default=0
     )
+    year = models.IntegerField(
+        default=0
+    )
 
 class OfferImage(models.Model):
     ...
