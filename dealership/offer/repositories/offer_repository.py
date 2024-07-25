@@ -13,10 +13,12 @@ class OfferRepository:
             cars: Car,
             location: Locality,
             price: float,
-            year: int,
-    ) : return Offer.objects.create(
-        cars=cars,
-        location=location,
-        price=price,
-        year=year,
-    )
+            year: int,):
+        offer = Offer(
+            cars=cars,
+            location=location,
+            price=price,
+            year=year,)
+        offer.save() # La clave esta en aca hacer un save y no crear el objeto en la base de datos. Eso lo hago con el super despues de haber agregado "GroupOfert"
+        return offer 
+        

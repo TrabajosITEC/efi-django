@@ -13,13 +13,15 @@
             <div class="container-form shadow p-5">
                 <!-- {% url 'createPayment' %} -->
                 <a class="text-decoration-none ms-4 text-center text-dark title" href="">Lista de Ofertas</a>
+                {% for offer_group, offers in grouped_offers.items %}
+                <h3>Grupo de Ofertas: {{ offer_group.id }}</h3>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Auto</th>
-                            <th>Ubicacion</th>
+                            <th>Ubicación</th>
                             <th>Precio</th>
-                            <th>Modelo</th>
+                            <th>Año</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +38,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
+            {% endfor %}
             </div>
         </div>
       </div>

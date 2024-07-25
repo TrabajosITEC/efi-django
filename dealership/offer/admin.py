@@ -1,6 +1,7 @@
 from django.contrib import admin
 from offer.models import (
-    Offer
+    Offer,
+    OfferGroup
 )
 
 @admin.register(Offer)
@@ -10,4 +11,11 @@ class OfferAdmin(admin.ModelAdmin):
         'location',
         'price',
         'year',
+    )
+
+@admin.register(OfferGroup)
+class OfferGroupAdmin(admin.ModelAdmin):
+    list_display = (
+        'cars',
+        'location',
     )

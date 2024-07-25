@@ -1,18 +1,27 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from offer.forms import OfferForm
+from offer.models import Offer, OfferGroup
 from ..repositories.offer_repository import OfferRepository
 repo_off = OfferRepository()
 # Create your views here.
 
 class OfferList(View):
     def get(self, request):
-        all_offers = repo_off.get_all()
+        # all_offers = repo_off.get_all()
+        offer_groups = OfferGroup.objects.all()
+
+        grouped_offers = {}
+        for group in offer_groups:
+            offers = Offer.objects.filter(offer_group=group)
+            grouped_offers[group] = offers
+        print(offer_groups)
         return render(
             request,
             "offers/list.html",
             dict(
-                offers = all_offers    
+                # offers = all_offers
+                grouped_offers=grouped_offers    
             )
         )
 
