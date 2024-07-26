@@ -44,16 +44,15 @@
       {% endif %}
     </div>
   </nav>
-
-  {% if user.is_staff %}
+  <div class="container-hamburguer-menu"> 
     <button
-      class="btn btn-primary"
+      class="btn p-2"
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#Id1"
       aria-controls="Id1"
     >
-      Enable both scrolling & backdrop
+      <img class="hamburguer-logo mx-2" src="{% static 'home/images/list.svg' %}">
     </button>
     
     <div
@@ -64,8 +63,8 @@
       aria-labelledby="Enable both scrolling & backdrop"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="Enable both scrolling & backdrop">
-          Backdrop with scrolling
+        <h5 class="offcanvas-title subtitle" id="Enable both scrolling & backdrop">
+          Bienvenido a AutoMundo
         </h5>
         <button
           type="button"
@@ -75,12 +74,34 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <p>
-          <a href="{% url 'logout' %}" class="btn w-100 btn-outline-dark p-2">Cerrar Sesión</a>
-        </p>
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <div>
+              <h6 class="mb-4"><b>Localizaciones</b></h6>
+              <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Ver Localizaciones</a>
+              <hr>
+            </div>
+            <div>
+              <h6 class="mt-4 mb-4"><b>Vehículos</b></h6>
+              <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Ver Vehículos</a>
+              <hr>
+            </div>  
+          {% elif not user.is_staff %}
+            <div>
+              <p>Inicio</p>
+              <hr>
+              <p>Nosotros</p>
+              <hr>
+              <p>Cerrar Sesión</p>
+            </div>
+          {% endif %}
+        {% else %}
+            <p>Nosotros</p>
+            <hr>
+        {% endif %}
       </div>
-    </div>
-  {% endif %}
+    </div> 
+  </div>
   <div class="container mt-4">
     {% block content %}
     {% endblock %}

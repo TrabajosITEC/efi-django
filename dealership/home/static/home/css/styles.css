@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 
 :root{
-  --font-titles: "Bebas Neue", sans-serif;
+  --font-subtitles: "DM Mono", monospace;
 
 }
 
@@ -30,9 +30,8 @@ form{
 
 }
 
-.title{
-  font-family: var(--font-titles);
-  letter-spacing: 1px;
+.subtitle{
+  font-family: var(--font-subtitles);
 
 }
 
@@ -54,8 +53,12 @@ form{
 }
 
 nav{
-  box-shadow: 0px 0px 25px #222;
-  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.183);
+
+}
+
+nav, .container-hamburguer-menu{
+  background-color: rgba(255, 255, 255, 0.416);;
   
 }
 
@@ -74,12 +77,12 @@ nav{
 }
 
 .redirect-brand:hover{
-  background-color: #fff;
+  background-color: #ffffff00;
 
 }
 
 nav a:hover, .dropdown button:hover{
-  background-color: rgba(221, 209, 209, 0.487);
+  background-color: rgba(255, 255, 255, 0.577);
   border-radius: 7px;
 
 }
@@ -88,6 +91,17 @@ nav a:hover, .dropdown button:hover{
   height: 50px;
   width: 2px;
   background-color: rgba(0, 0, 0, 0.675);
+
+}
+
+.hamburguer-logo{
+  width: 20px;
+  height: 20px;
+  
+}
+
+.link{
+  font-size: 14px;
 
 }
 
@@ -138,5 +152,10 @@ nav a:hover, .dropdown button:hover{
 .button-53:hover:after{
   bottom: 2px;
   left: 2px;
+
+}
+
+.register-title, .login-title{
+  font-size: 12px;
 
 }

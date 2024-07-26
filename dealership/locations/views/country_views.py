@@ -60,6 +60,7 @@ class CountryUpdate(View):
             request,
             'country/update.html',
             dict(
+                country = get_country,
                 form = country_form
 
             )
