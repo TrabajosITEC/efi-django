@@ -6,3 +6,4 @@ def all_names_categories(request):
     return dict(
         names_categories = names
     )
+

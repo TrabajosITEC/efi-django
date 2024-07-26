@@ -4,36 +4,46 @@
 {% block title %} AutoMundo {% endblock %}
 
 {% block content %}
-    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 95px;"> 
+    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 0px;"> 
       <div class="row align-items-stretch w-75">
         <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
             <img src="{% static 'home/images/plugin.svg' %}" alt="" class="img-form">
         </div>
         <div class="col-md-9 m-0 p-0">
-            <div class="container-form shadow p-5">
-                <!-- {% url 'createPayment' %} -->
+            <div class="shadow p-5" style="background-color: aliceblue;">
                 <a class="text-decoration-none ms-4 text-center text-dark title" href="">Lista de Ofertas</a>
+
+                {% if user.profile.is_seller %}
+                    <a class="text-decoration-none ms-4 text-center text-dark title" href="{% url 'createOffers' %}">Crear Oferta</a>
+                {% endif %}
                 {% for offer_group, offers in grouped_offers.items %}
-                <h3>Grupo de Ofertas: {{ offer_group.id }}</h3>
+                
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Vendedor</th>
                             <th>Auto</th>
                             <th>Ubicación</th>
                             <th>Precio</th>
                             <th>Año</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for offer in offers %}
                         <tr>
+                            <td>{{ offer.seller.username }}</td>
                             <td>{{ offer.cars }}</td>
                             <td>{{ offer.location }}</td>
                             <td>{{ offer.price }}</td>
                             <td>{{ offer.year }}</td>
-                            <!-- <td>
-                                <a href="" class="btn btn-success btn-sm">Editar</a>
-                            </td> -->
+                            <td>
+                                <a href="" class="btn btn-success btn-sm">Ingresar</a>
+                                <hr>
+                                {% if user.profile.is_seller %}
+                                    <!-- <a href="" class="btn btn-success btn-sm">Editar</a> -->
+                                {% endif %}
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

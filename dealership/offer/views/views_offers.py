@@ -44,6 +44,7 @@ class OffertCreate(View):
                 cars=form.cleaned_data['cars'],
                 location=form.cleaned_data['location'],
                 price=form.cleaned_data['price'],
-                year=form.cleaned_data['year']
+                year=form.cleaned_data['year'],
+                seller=request.user
             )
             return redirect('listOffers')

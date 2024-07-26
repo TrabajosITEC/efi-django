@@ -1,6 +1,8 @@
 from django.db import models
 from cars.models import Car
 from locations.models import Locality 
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class OfferGroup(models.Model):
@@ -19,8 +21,6 @@ class OfferGroup(models.Model):
 
     class Meta:
         unique_together = ('cars', 'location')
-
-
 
 class Offer(models.Model):
     cars = models.ForeignKey(
@@ -51,6 +51,12 @@ class Offer(models.Model):
         related_name='offer',
         null=False
     )
+    seller = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='offer',
+        null=False
+    )
 
     def save(self, *args, **kwargs):
         # Obtener o crear el grupo de ofertas correspondiente
@@ -59,8 +65,8 @@ class Offer(models.Model):
             location=self.location
         )
         self.offer_group = offer_group
-        super().save(*args, **kwargs)
 
+        super().save(*args, **kwargs)
 
 class OfferImage(models.Model):
     ...
