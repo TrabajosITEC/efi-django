@@ -43,15 +43,7 @@
       {% endif %}
     </div>
   </nav>
-  <div class="bg-dark">
-
-    {% if user.is_authenticated %}
-      {% if not user.is_staff %}
-        <p class="text-center text-white p-2"><i>Bienvenido {{user.first_name}}</i> a AutoMundo</p>
-      {% endif %}
-    {% endif %}  
-    
-    {% if user.is_staff %}
+  <div class="container-hamburguer-menu"> 
     <button
       class="btn p-2"
       type="button"
@@ -71,7 +63,7 @@
     >
       <div class="offcanvas-header">
         <h5 class="offcanvas-title subtitle" id="Enable both scrolling & backdrop">
-          Bievenido al Sistema
+          Bienvenido a AutoMundo
         </h5>
         <button
           type="button"
@@ -81,15 +73,33 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-        <h6 class="mb-4"><b>Localizaciones</b></h6>
-        <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Ver Países</a></ul>
-        <hr>
-        <a href="{% url 'provinces_list' %}" class="link p-2 text-decoration-none text-dark">Ver Provincias</a>
-        <hr>
-        <a href="{% url 'localities_list' %}" class="link p-2 text-decoration-none text-dark">Ver Localidades</a>
+        {% if user.is_authenticated %}
+          {% if user.is_staff %}
+            <div>
+              <h6 class="mb-4"><b>Localizaciones</b></h6>
+              <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Ver Localizaciones</a>
+              <hr>
+            </div>
+            <div>
+              <h6 class="mt-4 mb-4"><b>Vehículos</b></h6>
+              <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Ver Vehículos</a>
+              <hr>
+            </div>  
+          {% elif not user.is_staff %}
+            <div>
+              <p>Inicio</p>
+              <hr>
+              <p>Nosotros</p>
+              <hr>
+              <p>Cerrar Sesión</p>
+            </div>
+          {% endif %}
+        {% else %}
+            <p>Nosotros</p>
+            <hr>
+        {% endif %}
       </div>
-    </div>
-  {% endif %}
+    </div> 
   </div>
   <div class="container mt-4">
     {% block content %}

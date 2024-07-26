@@ -14,12 +14,16 @@
     <a href="{% url 'country_create' %}" class="btn btn-dark mb-3 w-50">Registrar País</a>
     <div class="horizontal-rule mt-4"></div>
   </div>
-  <table class="table table-striped border-dark shadow">
+  <div class="d-flex justify-content-center align-items-center mt-5 gap-3">
+    <a href="{% url 'provinces_list' %}" class="btn btn-outline-dark w-25 mb-3">Listado de Provincias</a>
+    <a href="{% url 'localities_list' %}" class="btn btn-outline-dark w-25 mb-3">Listado de Localidades</a>
+  </div>
+  <table class="table table-striped shadow">
     <thead>
       <tr>
-        <th class="bg-secondary border">ID</th>
-        <th class="bg-secondary border">País</th>
-        <th class="bg-secondary border">Acciones</th>
+        <th class="bg-secondary text-white border">ID</th>
+        <th class="bg-secondary text-white border">País</th>
+        <th class="bg-secondary text-white border">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +33,7 @@
         <td class="align-middle">{{ country.name }}</td>
         <td>
           <a href="{% url 'country_detail' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
-            <img src="{% static 'images/three-dots.svg' %}" class="" alt="Editar País" title="Más información">
+            <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalle País" title="Más información">
           </a>
           <a href="{% url 'country_delete' country.id %}" class="btn btn-outline-dark text-decoration-none me-1">
             <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">

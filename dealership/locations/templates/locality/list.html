@@ -14,13 +14,17 @@
     <a href="{% url 'locality_create' %}" class="btn btn-dark mb-3 w-50">Registrar Localidad</a>
     <div class="horizontal-rule mt-4"></div>
   </div>
-  <table class="table table-striped border-dark shadow">
+  <div class="d-flex justify-content-center align-items-center mt-5 gap-3">
+    <a href="{% url 'provinces_list' %}" class="btn btn-outline-dark w-25 mb-3">Listado de Provincias</a>
+    <a href="{% url 'countries_list' %}" class="btn btn-outline-dark w-25 mb-3">Listado de Países</a>
+  </div>
+  <table class="table table-striped shadow">
     <thead>
       <tr>
-        <th class="bg-secondary border">ID</th>
-        <th class="bg-secondary border">Localidad</th>
-        <th class="bg-secondary border">Provincia</th>
-        <th class="bg-secondary border">Acciones</th>
+        <th class="bg-secondary text-white border">ID</th>
+        <th class="bg-secondary text-white border">Localidad</th>
+        <th class="bg-secondary text-white border">Provincia</th>
+        <th class="bg-secondary text-white border">Acciones</th>
       </tr>
     </thead>
     <tbody>

@@ -29,8 +29,12 @@ class CarModelRepository:
     def delete(self, car_model:CarModel):
         car_model.delete()
     
-    def update(self,car_model_id:int,name:str)->CarModel:
-        car_model = get_object_or_404(CarModel, id=car_model_id)
+    def update(self, car_model:CarModel, name:str, brand_id:int) -> CarModel:
+        brand = Brand.objects.get(id = brand_id)
+        
         car_model.name = name
+        car_model.brand = brand
+        
         car_model.save()
+        
         return car_model

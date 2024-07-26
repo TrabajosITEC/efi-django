@@ -53,8 +53,12 @@ form{
 }
 
 nav{
-  box-shadow: 0px 0px 25px #222;
-  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.183);
+
+}
+
+nav, .container-hamburguer-menu{
+  background-color: rgba(255, 255, 255, 0.416);;
   
 }
 
@@ -73,12 +77,12 @@ nav{
 }
 
 .redirect-brand:hover{
-  background-color: #fff;
+  background-color: #ffffff00;
 
 }
 
 nav a:hover, .dropdown button:hover{
-  background-color: rgba(221, 209, 209, 0.487);
+  background-color: rgba(255, 255, 255, 0.577);
   border-radius: 7px;
 
 }
@@ -93,7 +97,6 @@ nav a:hover, .dropdown button:hover{
 .hamburguer-logo{
   width: 20px;
   height: 20px;
-  filter: invert(1);
   
 }
 

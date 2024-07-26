@@ -50,7 +50,14 @@ class CarUpdate(View):
         return render(
             request,
             'cars/update.html',
-            dict(form=form,car_models=car_models,categories=categories)
+            dict(
+                form = form,
+                car_models = car_models,
+                categories = categories,
+                car = car
+            
+            )
+        
         )
     
     def post(self,request,id):

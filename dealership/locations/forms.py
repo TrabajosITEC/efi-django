@@ -54,7 +54,7 @@ class LocalityForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs = {'class': 'form-control'}),
-            'province': forms.Select(attrs = {'class': 'form-control'})
+            'province': forms.Select(attrs = {'class': 'form-control text-center'})
 
         }
 
