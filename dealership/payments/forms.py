@@ -1,13 +1,18 @@
 from django import forms
 
 from payments.models import Payment
+from payments.repositories.paymente_repositorie import PaymentRepository
+repo_pay = PaymentRepository()
 
 class PaymentsForm(forms.ModelForm):
+    payments = repo_pay.get_all()
+    payment_options = forms.ModelMultipleChoiceField(
+            label="Seleccione Opciones de Pago",
+            queryset=payments,
+            widget=forms.CheckboxSelectMultiple,
+        )
+
     class Meta:
         model = Payment
-        fields = ["name"
-                  ]
-    
-        widgets = {
-            "name": forms.TextInput(attrs={'class': 'form-control m-3','placeholder': 'Metodo de pago'}),
-        }
+        fields = ["payment_options"]
+       

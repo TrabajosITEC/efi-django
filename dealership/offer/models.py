@@ -1,8 +1,8 @@
 from django.db import models
 from cars.models import Car
 from locations.models import Locality 
+from payments.models import Payment
 from django.contrib.auth.models import User
-
 
 # Create your models here.
 class OfferGroup(models.Model):
@@ -72,5 +72,16 @@ class OfferImage(models.Model):
     ...
 
 class OfferPayment(models.Model):
-    ...
+    offer = models.ForeignKey(
+        Offer,
+        on_delete=models.PROTECT,
+        related_name='offer_payments',
+        null=False
+    )
+    payment = models.ForeignKey(
+        Payment,
+        on_delete=models.PROTECT,
+        related_name='offer_payments',
+        null=False
+    )
 

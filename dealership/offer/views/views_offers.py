@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from offer.forms import OfferForm
+from payments.forms import PaymentsForm
 from offer.models import Offer, OfferGroup
 from ..repositories.offer_repository import OfferRepository
 repo_off = OfferRepository()
@@ -28,23 +29,44 @@ class OfferList(View):
 class OffertCreate(View):
     def get(self, request):
         form = OfferForm()
+        formPayments = PaymentsForm()
 
         return render(
             request,
             'offers/create.html',
             dict(
-                form=form
+                form=form,
+                formPayments=formPayments
             )
         )
     
     def post(self, request):
         form = OfferForm(request.POST)
+        formPayments = PaymentsForm(request.POST)
         if form.is_valid():
-            repo_off.create(
+            new_offer = repo_off.create(
                 cars=form.cleaned_data['cars'],
                 location=form.cleaned_data['location'],
                 price=form.cleaned_data['price'],
                 year=form.cleaned_data['year'],
                 seller=request.user
             )
-            return redirect('listOffers')
+            if formPayments.is_valid():
+                for payment in formPayments.cleaned_data['payment_options']:
+                            repo_off.create_payment(
+                                offer=new_offer,
+                                payment=payment
+                            )
+                return redirect('listOffers')
+    
+class OffertDetail(View):
+    def get(self, request, id):
+        offer = repo_off.get_by_id(id)
+
+        return render(
+            request,
+            'offers/detail.html',
+            dict(
+                offer=offer
+            )
+        )
