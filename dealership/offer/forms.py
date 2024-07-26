@@ -5,7 +5,7 @@ from locations.repositories.locality_repository import LocalityRepository
 repo_car = CarRepository()
 repo_loc = LocalityRepository()
 
-from offer.models import Offer
+from offer.models import Offer, OfferImage
 
 class OfferForm(forms.ModelForm):
     cars = forms.ModelChoiceField(queryset=repo_car.get_all())
@@ -54,4 +54,13 @@ class OfferForm(forms.ModelForm):
 #     "SplitDateTimeWidget",
 #     "SplitHiddenDateTimeWidget",
 #     "SelectDateWidget",
-# )
+# )from django import forms
+
+class OfferImageForm(forms.ModelForm):
+    class Meta: 
+        model = OfferImage
+        fields = [
+            'offer',
+            'image',
+            'description',
+        ]

@@ -69,7 +69,16 @@ class Offer(models.Model):
         super().save(*args, **kwargs)
 
 class OfferImage(models.Model):
-    ...
+    offer = models.ForeignKey(
+        Offer,
+        on_delete = models.CASCADE, 
+        related_name = 'images'
+    )
+    image = models.ImageField(upload_to='offer_images/', null = True) # Todos los archivos de media, van en una carpeta llamada 'media'.
+    description = models.TextField(blank = True, null = True)
+
+    def __str__(self):
+        return self.description or f'Image of {self.offer}'
 
 class OfferPayment(models.Model):
     offer = models.ForeignKey(
