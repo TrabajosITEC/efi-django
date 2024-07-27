@@ -16,7 +16,6 @@ class OfferList(View):
         for group in offer_groups:
             offers = Offer.objects.filter(offer_group=group)
             grouped_offers[group] = offers
-        print(offer_groups)
         return render(
             request,
             "offers/list.html",
