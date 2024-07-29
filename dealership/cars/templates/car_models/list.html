@@ -23,6 +23,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th class="bg-secondary text-white border">ID</th>
         <th class="bg-secondary text-white border">Modelo</th>
         <th class="bg-secondary text-white border">Marca</th>
         <th class="bg-secondary text-white border">Acciones</th>
@@ -31,6 +32,7 @@
     <tbody>
       {% for car_model in car_models %}
         <tr>
+          <td class="align-middle subtitle">{{ car_model.id }}</td>
           <td class="align-middle">{{ car_model.name }}</td>
           <td class="align-middle">{{ car_model.brand.name }}</td>
           <td>

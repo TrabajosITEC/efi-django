@@ -9,22 +9,26 @@ from cars.models import (
 class BrandForm(forms.ModelForm):
     class Meta:
         model = Brand
+        
         fields = [
             'name'
         ]
-    widgets = {
-        'name': forms.TextInput()
-    }
+        
+        widgets = {
+            'name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Nombre de la Marca'})
+        }
 
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
+        
         fields = [
             'name'
         ]
-    widgets = {
-        'name': forms.TextInput()
-    }
+        
+        widgets = {
+            'name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Nombre de la Categoría'})
+        }
 
 class CarModelForm(forms.ModelForm):
     class Meta:

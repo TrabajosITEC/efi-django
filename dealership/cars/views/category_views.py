@@ -46,7 +46,7 @@ class CategoryUpdate(View):
         return render(
             request,
             'categories/update.html',
-            dict(form=form,cars=cars)
+            dict(form=form,cars=cars, category=category)
         )
     
     def post(self,request,id):

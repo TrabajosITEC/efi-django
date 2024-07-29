@@ -46,7 +46,7 @@ class BrandUpdate(View):
         return render(
             request,
             'brands/update.html',
-            dict(form=form,car_models=car_models)
+            dict(form=form,car_models=car_models, brand=brand)
         )
     
     def post(self,request,id):
