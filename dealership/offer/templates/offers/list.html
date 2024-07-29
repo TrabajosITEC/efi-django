@@ -18,36 +18,51 @@
                 {% endif %}
                 {% for offer_group, offers in grouped_offers.items %}
                 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Vendedor</th>
-                            <th>Auto</th>
-                            <th>Ubicación</th>
-                            <th>Precio</th>
-                            <th>Año</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for offer in offers %}
-                        <tr>
-                            <td>{{ offer.seller.username }}</td>
-                            <td>{{ offer.cars }}</td>
-                            <td>{{ offer.location }}</td>
-                            <td>{{ offer.price }}</td>
-                            <td>{{ offer.year }}</td>
-                            <td>
-                                <a href="{% url 'DetailOffers' offer.id %}" class="btn btn-success btn-sm">Ingresar</a>
-                                <hr>
-                                {% if user.profile.is_seller %}
-                                    <!-- <a href="" class="btn btn-success btn-sm">Editar</a> -->
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ offer_group.id }}" aria-expanded="true" aria-controls="collapse{{ offer_group.id }}">
+                            {{ offer_group.cars }} / {{ offer_group.location }}
+                        </button>   
+                      </h2>
+                      <div id="collapse{{ offer_group.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Vendedor</th>
+                                        <th>Auto</th>
+                                        <th>Ubicación</th>
+                                        <th>Precio</th>
+                                        <th>Año</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for offer in offers %}
+                                    <tr>
+                                        <td>{{ offer.seller.username }}</td>
+                                        <td>{{ offer.cars }}</td>
+                                        <td>{{ offer.location }}</td>
+                                        <td>{{ offer.price }}</td>
+                                        <td>{{ offer.year }}</td>
+                                        <td>
+                                            <a href="{% url 'DetailOffers' offer.id %}" class="btn btn-success btn-sm">Ingresar</a>
+                                            <hr>
+                                            {% if user.profile.is_seller %}
+                                                <!-- <a href="" class="btn btn-success btn-sm">Editar</a> -->
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
             {% endfor %}
             </div>
         </div>
