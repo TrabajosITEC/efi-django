@@ -60,7 +60,6 @@ class OfferImageForm(forms.ModelForm):
     class Meta: 
         model = OfferImage
         fields = [
-            'offer',
             'image',
             'description',
         ]

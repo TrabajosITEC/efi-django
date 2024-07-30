@@ -74,7 +74,7 @@ class OfferImage(models.Model):
         on_delete = models.CASCADE, 
         related_name = 'images'
     )
-    image = models.ImageField(upload_to='offer_images/', null = True) # Todos los archivos de media, van en una carpeta llamada 'media'.
+    image = models.ImageField(upload_to='offer_images/', null = True) 
     description = models.TextField(blank = True, null = True)
 
     def __str__(self):
