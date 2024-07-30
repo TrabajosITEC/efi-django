@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from offer.forms import OfferForm
 from payments.forms import PaymentsForm
-from offer.models import Offer, OfferGroup
+from offer.models import Offer, OfferGroup, OfferImage
 from ..repositories.offer_repository import OfferRepository
 repo_off = OfferRepository()
 # Create your views here.
@@ -61,11 +61,11 @@ class OffertCreate(View):
 class OffertDetail(View):
     def get(self, request, id):
         offer = repo_off.get_by_id(id)
-
+        image = OfferImage.objects.filter(offer=offer)
         return render(
             request,
             'offers/detail.html',
             dict(
-                offer=offer
+                offer=offer,image=image
             )
         )
