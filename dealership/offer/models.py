@@ -72,7 +72,8 @@ class OfferImage(models.Model):
     offer = models.ForeignKey(
         Offer,
         on_delete = models.CASCADE, 
-        related_name = 'images'
+        related_name = 'images',
+        null=True
     )
     image = models.ImageField(upload_to='offer_images/', null = True) # Todos los archivos de media, van en una carpeta llamada 'media'.
     description = models.TextField(blank = True, null = True)

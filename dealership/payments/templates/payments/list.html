@@ -1,38 +1,39 @@
-{% extends "home/base.html" %}
+{% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} AutoMundo {% endblock %}
+{% block title %} Métodos de Pago | AutoMundo {% endblock %}
 
 {% block content %}
-    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 95px;"> 
-      <div class="row align-items-stretch w-75">
-        <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
-            <img src="{% static 'home/images/plugin.svg' %}" alt="" class="img-form">
-        </div>
-        <div class="col-md-9 m-0 p-0">
-            <div class="container-form shadow p-5">
-                <a class="text-decoration-none ms-4 text-center text-dark title" href="{% url 'createPayment' %}">Crear metodo de pago</a>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for payment in payments %}
-                        <tr>
-                            <td>{{ payment.name }}</td>
-                            <td>
-                                <a href="{% url 'UpdatePayment' payment.id %}" class="btn btn-success btn-sm">Editar</a>
-                                <a href="{% url 'DeletePayment' payment.id %}" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-      </div>
-    </div>
+<div class="container mb-5">
+  <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+    <h2 class="text-center mb-4 title">Métodos de Pago registrados</h2>
+    <a href="{% url 'createPayment' %}" class="btn btn-dark mb-3 w-50">Registrar Método de Pago</a>
+    <div class="horizontal-rule mt-4"></div>
+  </div>
+  <table class="table table-striped shadow">
+    <thead>
+      <tr>
+        <th class="bg-secondary text-white border">ID</th>
+        <th class="bg-secondary text-white border">Método de Pago</th>
+        <th class="bg-secondary text-white border">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for payment in payments %}
+      <tr>
+        <td class="align-middle subtitle">{{ payment.id }}</td>
+        <td class="align-middle">{{ payment.name }}</td>
+        <td>
+          <a href="{% url 'DeletePayment' payment.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+            <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
+          </a>
+          <a href="{% url 'UpdatePayment' payment.id %}" class="btn btn-outline-dark text-decoration-none">
+            <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div> 
 {% endblock %}
