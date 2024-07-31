@@ -12,15 +12,15 @@ class OfferGroup(models.Model):
         related_name='offer_groups',
         null=False
     )
-    location = models.ForeignKey(
-        Locality,
-        on_delete=models.PROTECT,
-        related_name='offer_groups',
-        null=False
-    )
+    # location = models.ForeignKey(
+    #     Locality,
+    #     on_delete=models.PROTECT,
+    #     related_name='offer_groups',
+    #     null=False
+    # )
 
-    class Meta:
-        unique_together = ('cars', 'location')
+    # class Meta:
+    #     unique_together = ('cars', 'location')
 
 class Offer(models.Model):
     cars = models.ForeignKey(
@@ -61,8 +61,8 @@ class Offer(models.Model):
     def save(self, *args, **kwargs):
         # Obtener o crear el grupo de ofertas correspondiente
         offer_group, created = OfferGroup.objects.get_or_create(
-            cars=self.cars,
-            location=self.location
+            cars=self.cars
+            # location=self.location
         )
         self.offer_group = offer_group
 
@@ -75,7 +75,7 @@ class OfferImage(models.Model):
         related_name = 'images',
         null=True
     )
-    image = models.ImageField(upload_to='offer_images/', null = True) # Todos los archivos de media, van en una carpeta llamada 'media'.
+    image = models.ImageField(upload_to='offer_images/', null = True) 
     description = models.TextField(blank = True, null = True)
 
     def __str__(self):

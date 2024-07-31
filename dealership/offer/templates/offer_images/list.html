@@ -1,18 +1,36 @@
-{% extends 'home/base.html' %}
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block title %} Lista de Imágenes {% endblock %}
+
 {% block content %}
-    {% for image in images %}
-        <div class="container mt-5 d-flex justify-content-center align-items-center">
-            <div class="card col-lg-6">  
-                <div class="card-header">
-                    {{image.offer}}
-                </div>
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-5"><b>Lista de Imágenes de Ofertas</b></h2>
+
+    <!-- Formulario para subir imágenes -->
+    <form action="{% url 'offer_images' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            {{ form.image.label_tag }} {{ form.image }}
+        </div>
+        <div class="input-group mb-3">
+            {{ form.description.label_tag }} {{ form.description }}
+        </div>
+        <button type="submit" class="btn btn-primary">Subir Imagen</button>
+    </form>
+
+    <!-- Lista de imágenes -->
+    <div class="row mt-4">
+        {% for image in images %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.description }}">
                 <div class="card-body">
-                    <img src="{{image.image.url}}" class="img-fluid" alt="image">
-                </div>
-                <div class="card-footer">
-                    {{image.description}}
+                    <p class="card-text">{{ image.description }}</p>
                 </div>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
