@@ -15,15 +15,19 @@
           <h2 class="mb-5 text-center title"><b>Crear Oferta</b></h2>
           {% csrf_token %}
           <div class="input-group">
+            <p style="margin-right: 5px;">Auto:  </p>
             {{ form.cars }}
           </div>
           <div class="input-group">
+            <p style="margin-right: 5px;">Localidad:  </p>
             {{ form.location }}
           </div>
           <div class="input-group">
+            <p style="margin-right: 5px;">Precio:  </p>
             {{ form.price }}
           </div>
           <div class="input-group">
+            <p style="margin-right: 5px;">Modelo:  </p>
             {{ form.year }}
           </div>
           <div class="input-group">
@@ -31,6 +35,7 @@
           </div>
           <hr>
           <div class="input-group">
+           
             {{ formImage.image.label_tag }} {{ formImage.image }}
           </div>
           <div class="input-group">

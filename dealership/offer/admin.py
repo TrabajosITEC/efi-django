@@ -17,5 +17,5 @@ class OfferAdmin(admin.ModelAdmin):
 class OfferGroupAdmin(admin.ModelAdmin):
     list_display = (
         'cars',
-        'location',
+        # 'location',
     )

@@ -9,7 +9,6 @@ repo_off = OfferRepository()
 
 class OfferList(View):
     def get(self, request):
-        # all_offers = repo_off.get_all()
         offer_groups = OfferGroup.objects.all()
 
         grouped_offers = {}
@@ -20,7 +19,6 @@ class OfferList(View):
             request,
             "offers/list.html",
             dict(
-                # offers = all_offers
                 grouped_offers=grouped_offers    
             )
         )
