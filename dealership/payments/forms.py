@@ -15,4 +15,17 @@ class PaymentsForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ["payment_options"]
-       
+
+class PaymentCreateForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+
+        fields = [
+            'name',
+
+        ]
+
+        widgets = {
+            'name': forms.TextInput(attrs = {'class': 'form-control', 'placeholder': 'Método de Pago'})
+
+        }

@@ -32,7 +32,6 @@
             {% endfor %}
           </ul>
         </div>
-        <a class="navbar-brand p-2" href="{% url 'listOffers' %}">Ofertas</a>
       </div>
     </div>
     <div class="ms-auto p-3 w-25">
@@ -77,27 +76,32 @@
         {% if user.is_authenticated %}
           {% if user.is_staff %}
             <div>
-              <h6 class="mb-4"><b>Localizaciones</b></h6>
-              <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Ver Localizaciones</a>
+              <h6 class="mb-4"><b>Ubicaciones</b></h6>
+              <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Ubicaciones</a>
               <hr>
             </div>
             <div>
               <h6 class="mt-4 mb-4"><b>Vehículos</b></h6>
-              <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Ver Vehículos</a>
+              <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Vehículos</a>
               <hr>
             </div>
             <div>
               <h6 class="mt-4 mb-4"><b>Métodos de Pago</b></h6>
-              <a href="{% url 'listPayment' %}" class="link p-2 text-decoration-none text-dark">Ver Métodos de Pago</a>
+              <a href="{% url 'payments_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Métodos de Pago</a>
+              <hr>
+            </div>  
+            <div>
+              <h6 class="mt-4 mb-4"><b>Ofertas</b></h6>
+              <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Administrar Ofertas</a>
               <hr>
             </div>  
           {% elif not user.is_staff %}
             <div>
-              <p>Inicio</p>
+              <a href="{% url 'index' %}" class="link p-2 text-decoration-none text-dark">Inicio</a>
               <hr>
-              <p>Nosotros</p>
+              <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Ofertas</a>
               <hr>
-              <p>Cerrar Sesión</p>
+              <a href="{% url 'logout' %}" class="link p-2 text-decoration-none text-danger">Cerrar Sesión</a>
             </div>
           {% endif %}
         {% else %}
