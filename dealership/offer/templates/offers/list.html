@@ -1,71 +1,75 @@
-{% extends "home/base.html" %}
+{% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} AutoMundo {% endblock %}
+{% block title %} Ofertas - Listado | AutoMundo {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'styles/css/styles-offer.css' %}">
+{% endblock %}
 
 {% block content %}
-    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 0px;"> 
-      <div class="row align-items-stretch w-75">
-        <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
-            <img src="{% static 'home/images/plugin.svg' %}" alt="" class="img-form">
-        </div>
-        <div class="col-md-9 m-0 p-0">
-            <div class="shadow p-5" style="background-color: aliceblue;">
-                <a class="text-decoration-none ms-4 text-center text-dark title" href="">Lista de Ofertas</a>
-
-                {% if user.profile.is_seller %}
-                    <a class="text-decoration-none ms-4 text-center text-dark title" href="{% url 'createOffers' %}">Crear Oferta</a>
-                {% endif %}
-                {% for offer_group, offers in grouped_offers.items %}
-                
-
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ offer_group.id }}" aria-expanded="true" aria-controls="collapse{{ offer_group.id }}">
-                            {{ offer_group.cars }} 
-                        </button>   
-                      </h2>
-                      <div id="collapse{{ offer_group.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Vendedor</th>
-                                        <!-- <th>Auto</th> -->
-                                        <th>Ubicación</th>
-                                        <th>Precio</th>
-                                        <th>Año</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for offer in offers %}
-                                    <tr>
-                                        <td>{{ offer.seller.username }}</td>
-                                        <!-- <td>{{ offer.cars }}</td> -->
-                                        <td>{{ offer.location }}</td>
-                                        <td>{{ offer.price }}</td>
-                                        <td>{{ offer.year }}</td>
-                                        <td>
-                                            <a href="{% url 'DetailOffers' offer.id %}" class="btn btn-success btn-sm">Ingresar</a>
-                                            <hr>
-                                            {% if user.profile.is_seller %}
-                                                <!-- <a href="" class="btn btn-success btn-sm">Editar</a> -->
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-            {% endfor %}
+<div class="container mb-5">
+  <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+    <h2 class="text-center mb-4 title">Listado de Ofertas</h2>
+    <a href="{% url 'createOffers' %}" class="btn btn-dark mb-3 w-50">Crear Oferta</a>
+    <div class="horizontal-rule mt-4"></div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center mt-5 gap-3">
+    <a href="{% url 'offer_images' %}" class="btn btn-outline-dark w-50 mb-3">Administrar Imágenes</a>
+  </div>
+  {% if not grouped_offers %}
+    <div class="d-flex flex-column justify-content-center align-items-center container mt-5">
+      <div>
+        <img class="empty-offers" src="{% static 'images/undraw_towing_re_wesa.svg' %}" alt="">
+        <h4 class="text-center mt-5 title title-empty-offers">Aún no hay ofertas disponibles</h4>
+      </div>
+    </div> 
+  {% else %}   
+    {% for offer_group, offers in grouped_offers.items %}
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ offer_group.id }}" aria-expanded="true" aria-controls="collapse{{ offer_group.id }}">
+          </button>   
+          </h2>
+          {{ offer_group.cars }} 
+          <div id="collapse{{ offer_group.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Vendedor</th>
+                    <!-- <th>Auto</th> -->
+                    <th>Ubicación</th>
+                    <th>Precio</th>
+                    <th>Año</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for offer in offers %}
+                    <tr>
+                      <td>{{ offer.seller.username }}</td>
+                      <!-- <td>{{ offer.cars }}</td> -->
+                      <td>{{ offer.location }}</td>
+                      <td>{{ offer.price }}</td>
+                      <td>{{ offer.year }}</td>
+                      <td>
+                        <a href="{% url 'DetailOffers' offer.id %}" class="btn btn-success btn-sm">Ingresar</a>
+                        <hr>
+                        {% if user.profile.is_seller %}
+                            <!-- <a href="" class="btn btn-success btn-sm">Editar</a> -->
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
       </div>
-    </div>
-{% endblock %}
+    {% endfor %} 
+  {% endif %}
+</div>
+{% endblock %}  
