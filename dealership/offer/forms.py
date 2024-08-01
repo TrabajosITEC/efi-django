@@ -8,8 +8,18 @@ repo_loc = LocalityRepository()
 from offer.models import Offer, OfferImage
 
 class OfferForm(forms.ModelForm):
-    cars = forms.ModelChoiceField(queryset=repo_car.get_all())
-    location = forms.ModelChoiceField(queryset=repo_loc.get_all())
+    cars = forms.ModelChoiceField(
+        queryset=repo_car.get_all(),
+        widget = forms.Select(attrs={'class': 'form-control', 'required': 'required'})
+    
+    )
+    
+
+    location = forms.ModelChoiceField(
+        queryset = repo_loc.get_all(),
+        widget = forms.Select(attrs={'class': 'form-control', 'required': 'required'})
+        
+        )
 
     class Meta:
         model = Offer
@@ -24,8 +34,14 @@ class OfferForm(forms.ModelForm):
             "cars": forms.Select(),
             "location": forms.Select(),
             "price": forms.NumberInput(attrs={"class": "form-control"}),
-            "year": forms.NumberInput(attrs={"class": "form-control"}),
+            "year": forms.NumberInput(attrs={"class": "form-control", "min": 2010})
         }
+
+    def __init__(self, *args, **kwargs):
+        super(OfferForm, self).__init__(*args, **kwargs)
+        
+        self.fields['location'].empty_label = 'Seleccioná una localidad'
+        self.fields['cars'].empty_label = 'Seleccioná un vehículo'
 
 # __all__ = (
 #     "Media",
@@ -63,3 +79,18 @@ class OfferImageForm(forms.ModelForm):
             'image',
             'description',
         ]
+
+        widgets = {
+            'image': forms.ClearableFileInput(attrs={
+                'class': 'form-control',
+                'accept': 'image/*',
+                'placeholder': 'Upload an image',
+            }),
+
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Describí tu producto',
+                'rows': 3,
+            }),
+        
+        }
