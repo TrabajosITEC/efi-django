@@ -8,6 +8,7 @@ from offer.views.views_offers import (
     OffertDetail,
 )
 
+
 from offer.views.offer_image_view import OfferImageView
 
 urlpatterns = [

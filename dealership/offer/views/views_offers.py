@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.urls import reverse
 from offer.forms import OfferForm, OfferImageForm
 from payments.forms import PaymentsForm
+from comments.forms import CommentForm
 from offer.models import Offer, OfferGroup, OfferImage
+from comments.repositories.comment_repository import CommentRepository
+repo_comment = CommentRepository()
 from ..repositories.offer_repository import OfferRepository
 repo_off = OfferRepository()
 # Create your views here.
@@ -80,10 +84,37 @@ class OffertDetail(View):
     def get(self, request, id):
         offer = repo_off.get_by_id(id)
         image = OfferImage.objects.filter(offer=offer)
+        formComment = CommentForm()
+        comments_offer = repo_comment.filter_by_offer(offer)
         return render(
             request,
             'offers/detail.html',
             dict(
-                offer=offer,image=image
+                offer=offer,
+                image=image,
+                formComment=formComment,
+                comments_offer=comments_offer
             )
         )
+    # Este POST se crea para manejar el envio de comentarios.
+    def post(self, request, id):
+        offer = get_object_or_404(Offer, id=id)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            repo_comment.create(
+                comment=form.cleaned_data['comment'],
+                offer=offer,
+                profile=request.user
+            )
+            return redirect('DetailOffers', id=id)
+        else:
+            image = OfferImage.objects.filter(offer=offer)
+            return render(
+                request,
+                'offers/detail.html',
+                {
+                    'offer': offer,
+                    'image': image,
+                    'formComment': form
+                }
+            )
