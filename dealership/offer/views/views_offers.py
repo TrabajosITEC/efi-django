@@ -22,10 +22,16 @@ class OfferList(View):
         for group in offer_groups:
             offers = repo_off.filter_by_attr(group)
             grouped_offers[group] = offers
-        return render(request, "offers/list.html", dict(grouped_offers=grouped_offers))
+        return render(
+            request,
+            "offers/list.html",
+            dict(
+                # offers = all_offers
+                grouped_offers=grouped_offers    
+            )
+        )
 
-
-class OffertCreate(View):
+class OfferCreate(View):
     def get(self, request):
         form = OfferForm()
         formPayments = PaymentsForm()
@@ -66,12 +72,15 @@ class OffertCreate(View):
         else:
             return render(
                 request,
-                "offers/create.html",
-                dict(form=form, formPayments=formPayments, formImage=formImage),
-            )
-
-
-class OffertDetail(View):
+                'offers/create.html',
+                dict(
+                    form=form,
+                    formPayments=formPayments,
+                    formImage=formImage
+                )
+            )   
+        
+class OfferDetail(View):
     def get(self, request, id):
         offer = repo_off.get_by_id(id)
         image = OfferImage.objects.filter(offer=offer)
