@@ -25,7 +25,7 @@ class OfferList(View):
             )
         )
 
-class OffertCreate(View):
+class OfferCreate(View):
     def get(self, request):
         form = OfferForm()
         formPayments = PaymentsForm()
@@ -78,7 +78,7 @@ class OffertCreate(View):
                 )
             )   
         
-class OffertDetail(View):
+class OfferDetail(View):
     def get(self, request, id):
         offer = repo_off.get_by_id(id)
         image = OfferImage.objects.filter(offer=offer)
