@@ -4,7 +4,7 @@
 {% block title %} AutoMundo {% endblock %}
 
 {% block content %}
-<div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 95px;">
+<div class="container mt-5 mb-5 d-flex justify-content-center align-items-center">
   <div class="row align-items-stretch w-75">
     <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
       <img src="{% static 'home/images/plugin.svg' %}" alt="" class="img-form">
@@ -30,11 +30,14 @@
             {{ formPayments.as_p }}
           </div>
           <hr>
-          <div class="input-group">
-            {{ formImage.image.label_tag }} {{ formImage.image }}
-          </div>
-          <div class="input-group">
-            {{ formImage.description.label_tag }} {{ formImage.description }}
+          <div id="image-section">
+            <div class="input-group">
+              <label for="images">Upload images:</label>
+              <input id="image-input" name="images" type="file" multiple class="form-control-file"
+                onchange="updateDescriptions()">
+            </div>
+            <div id="description-section">
+            </div>
           </div>
           <div class="ms-4 d-flex justify-content-center align-items-center container-register-btn">
             <button type="submit" class="button-53 bg-success mt-3 mb-3 w-50">Crear</button>
@@ -44,4 +47,33 @@
     </div>
   </div>
 </div>
+
+<script>
+  function updateDescriptions() {
+    const fileInput = document.getElementById('image-input');
+    const descriptionSection = document.getElementById('description-section');
+    const files = fileInput.files;
+
+    descriptionSection.innerHTML = '';
+
+    for (let i = 0; i < files.length; i++) {
+      const descriptionDiv = document.createElement('div');
+      descriptionDiv.className = 'input-group mt-3';
+
+      const label = document.createElement('label');
+      label.innerText = `Description for Image ${i + 1}:`;
+      descriptionDiv.appendChild(label);
+
+      const input = document.createElement('input');
+      input.name = 'descriptions';
+      input.type = 'text';
+      input.placeholder = 'Enter description';
+      input.className = 'form-control';
+      descriptionDiv.appendChild(input);
+
+      descriptionSection.appendChild(descriptionDiv);
+    }
+  }
+</script>
+
 {% endblock %}
