@@ -43,3 +43,5 @@ class CommentRepository:
 
         return offer_filter
     
+    def delete(self, comment: Comment):
+        return comment.delete()

@@ -6,6 +6,8 @@ from payments.views import (
     PaymentDelete,
     PaymentUpdate
 )
+
+
 urlpatterns = [
     path(route = 'create/', view = CreatePayment.as_view(), name = 'createPayment'),
     path(route = 'list/', view = PaymentList.as_view(), name = 'listPayment'),

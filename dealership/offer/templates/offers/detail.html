@@ -4,7 +4,7 @@
 {% block title %} AutoMundo {% endblock %}
 
 {% block content %}
-<div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 0px;">
+<div class="container mt-5 mb-5 d-flex justify-content-center align-items-center">
     <div class="row align-items-stretch w-75">
         <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
             <img src="{% static 'home/images/plugin.svg' %}" alt="" class="img-form">
@@ -20,38 +20,39 @@
             {% empty %}
             <p>No images available.</p>
             {% endfor %}
-            <form method="POST" action="{% url 'DetailOffers' id=offer.id %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'DetailOffers' id=offer.id %}" enctype="multipart/form-data" style="height: 120px;" >
                 {% csrf_token %}
                 {{ formComment.as_p }}
-                <button>
-                    comentar
+                <button class="btn btn-primary">
+                    Comentar
                 </button>
-                
-                <div class="container mt-5">
-                    <h1>Comentarios</h1>
-                    {% for comment in comments_offer %}
-                    <div class="card mb-3">
-                        <div class="card-body d-flex justify-content-between align-items-center">
-                            <div>
-                                <h5 class="card-title text-primary">{{ comment.profile.username }}</h5>
-                                <p class="card-text">{{ comment.comment }}</p>
-                            </div>
+            </form>
+            <h1>Comentarios</h1>
+            {% for comment in comments_offer %}
+            <div class="card mb-3">
+                <div class="card mb-3">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title text-primary">{{ comment.profile.username }}</h5>
+                            <p class="card-text">{{ comment.comment }}</p>
+                        </div>
+                        <div>
+                            {% if request.user.is_staff or comment.profile.id == request.user.id %}
+                                <a href="{% url 'DeleteComment' comment.id %}" class="btn btn-danger btn-sm me-2">Eliminar</a>
+                            {% endif %}
                             {% if comment.profile.id == request.user.id %}
-                            <button class="btn btn-danger">
-                                Eliminar
-                            </button>
+                                <a href="" class="btn btn-success btn-sm">Editar</a>
                             {% endif %}
                         </div>
                     </div>
-                    {% empty %}
-                    <div class="alert alert-info" role="alert">
-                        No hay comentarios aún.
-                    </div>
-                    {% endfor %}
                 </div>
-    
-            </form>
                 
+            </div>
+            {% empty %}
+            <div class="alert alert-info" role="alert">
+                No hay comentarios aún.
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
