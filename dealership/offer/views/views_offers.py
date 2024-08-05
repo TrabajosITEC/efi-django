@@ -6,18 +6,21 @@ from payments.forms import PaymentsForm
 from comments.forms import CommentForm
 from offer.models import Offer, OfferGroup, OfferImage
 from offer.repositories.offer_repository import OfferRepository
+from offer.repositories.offer_group_repository import OfferGroupRepository
 from comments.repositories.comment_repository import CommentRepository
 
 repo_off = OfferRepository()
+repo_offGroup = OfferGroupRepository()
 repo_comment = CommentRepository()
+
 
 class OfferList(View):
     def get(self, request):
-        offer_groups = OfferGroup.objects.all()
+        offer_groups = repo_offGroup.get_all()
 
         grouped_offers = {}
         for group in offer_groups:
-            offers = Offer.objects.filter(offer_group=group)
+            offers = repo_off.filter_by_attr(group)
             grouped_offers[group] = offers
         return render(request, "offers/list.html", dict(grouped_offers=grouped_offers))
 
@@ -40,6 +43,7 @@ class OffertCreate(View):
         formImage = OfferImageForm(request.POST, request.FILES)
         if form.is_valid() and formImage.is_valid():
             # Crear la oferta
+
             new_offer = repo_off.create(
                 cars=form.cleaned_data["cars"],
                 location=form.cleaned_data["location"],
@@ -48,11 +52,13 @@ class OffertCreate(View):
                 seller=request.user,
             )
             # Guardar la imagen relacionada con la oferta
+
             new_image = formImage.save(commit=False)
             new_image.offer = new_offer
             new_image.save()
 
             # Guardar las opciones de pago si el formulario de pagos es válido
+
             if formPayments.is_valid():
                 for payment in formPayments.cleaned_data["payment_options"]:
                     repo_off.create_payment(offer=new_offer, payment=payment)
@@ -83,6 +89,7 @@ class OffertDetail(View):
         )
 
     # Este POST se crea para manejar el envio de comentarios.
+
     def post(self, request, id):
         offer = get_object_or_404(Offer, id=id)
         form = CommentForm(request.POST)

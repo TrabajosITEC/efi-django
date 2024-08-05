@@ -9,6 +9,7 @@ from offer.views.views_offers import (
 )
 from comments.views.views_comment import(
     CommentDelete,
+    CommentUpdate,
 )
 
 from offer.views.offer_image_view import OfferImageView
@@ -18,6 +19,7 @@ urlpatterns = [
     path(route = 'create/', view = OffertCreate.as_view(), name = 'createOffers'),
     path(route = 'detail/<int:id>/detail/', view = OffertDetail.as_view(), name = 'DetailOffers'),
     path(route = 'detail/<int:id>/delete/', view = CommentDelete.as_view(), name = 'DeleteComment'),
+    path(route = 'detail/<int:id>/updateComment/', view = CommentUpdate.as_view(), name = 'UpdateComment'),
     path(route = 'offer_images/', view = OfferImageView.as_view(), name = 'offer_images')
 ] 
 if settings.DEBUG:

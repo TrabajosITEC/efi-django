@@ -20,6 +20,7 @@
             {% empty %}
             <p>No images available.</p>
             {% endfor %}
+            {% if user.is_authenticated %}
             <form method="POST" action="{% url 'DetailOffers' id=offer.id %}" enctype="multipart/form-data" style="height: 120px;" >
                 {% csrf_token %}
                 {{ formComment.as_p }}
@@ -27,6 +28,7 @@
                     Comentar
                 </button>
             </form>
+            {% endif %}
             <h1>Comentarios</h1>
             {% for comment in comments_offer %}
             <div class="card mb-3">
@@ -41,7 +43,7 @@
                                 <a href="{% url 'DeleteComment' comment.id %}" class="btn btn-danger btn-sm me-2">Eliminar</a>
                             {% endif %}
                             {% if comment.profile.id == request.user.id %}
-                                <a href="" class="btn btn-success btn-sm">Editar</a>
+                                <a href="{% url 'UpdateComment' comment.id %}" class="btn btn-success btn-sm">Editar</a>
                             {% endif %}
                         </div>
                     </div>
