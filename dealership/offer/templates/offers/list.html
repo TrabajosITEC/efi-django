@@ -48,10 +48,11 @@
                                         <td>{{ offer.price }}</td>
                                         <td>{{ offer.year }}</td>
                                         <td>
+                                            
                                             <a href="{% url 'DetailOffers' offer.id %}" class="btn btn-success btn-sm">Ingresar</a>
                                             <hr>
-                                            {% if user.profile.is_seller %}
-                                                <a href="" class="btn btn-success btn-sm">Editar</a>
+                                            {% if offer.seller.profile.is_seller and offer.seller.id == request.user.id %}
+                                                <a href="{% url 'UpdateOffer' offer.id %}" class="btn btn-success btn-sm">Editar</a>
                                             {% endif %}
                                         </td>
                                     </tr>

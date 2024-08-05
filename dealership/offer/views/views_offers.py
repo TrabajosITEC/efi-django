@@ -105,3 +105,29 @@ class OffertDetail(View):
                 "offers/detail.html",
                 {"offer": offer, "image": image, "formComment": form},
             )
+
+class OfferUpdate(View):
+    def get(self, request, id):
+        offer = repo_off.get_by_id(id=id)
+        formPayments = PaymentsForm()
+        formImage = OfferImageForm()
+
+        initial_data = {
+            'cars': offer.cars,
+            'location': offer.location,
+            'price': offer.location,
+            'year': offer.year,
+        }
+
+        form = OfferForm(initial=initial_data)
+
+        return render(
+            request,
+            "offers/update.html",
+            dict(
+                form = form,
+                # offer=offer,
+                formPayments=formPayments,
+                formImage=formImage
+            )
+        )
