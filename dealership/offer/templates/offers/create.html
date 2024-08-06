@@ -10,8 +10,13 @@
 {% block content %}
 <div class="container">
   <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-    <h2 class="text-center mb-5">Sección de Ofertas</h2>
-    <a href="{% url 'listOffers' %}" class="btn btn-dark mb-3 w-50">Volver al listado de ofertas</a>
+    <div class="d-flex flex-row align-items-center">
+      <img class="mr-3 create-offer-img" src="{% static 'images/DrawKit-Vector-Illustration-ecommerce-02-Photoroom.png' %}" alt="">
+      <div class="ms-5">
+        <h2 class="text-justify mb-4"><b><i>Publicá </i></b>tu<br>oferta</h4>
+        <a href="{% url 'listOffers' %}" class="btn btn-dark mb-3">Volver al listado de ofertas</a>
+      </div>
+    </div>
     <div class="horizontal-rule mt-4"></div>
   </div>
   <div class="d-flex flex-column justify-content-center align-items-center">
@@ -27,7 +32,7 @@
         </div>
       </div>
       <div class="card h-25 form-group row justify-content-center align-items-center w-100 mt-3 mb-3">
-        <p class="ps-4 text-left"><b>Tu Localidad</b></p>
+        <p class="ps-4 text-left"><b>Ubicación</b></p>
         <hr class="w-100">
         <div class="d-flex col-lg-9 w-100 justify-content-center">
           <label class="label-inputs">Seleccioná desde dónde vendes</label>
@@ -47,7 +52,7 @@
         <hr class="w-100">
         <div class="d-flex col-lg-9 w-100 justify-content-center">
           <label class="label-inputs">Seleccioná el modelo de tu vehículo</label>
-          {{ form.price }}
+          {{ form.year }}
         </div>
       </div>
       <div class="card h-25 form-group row justify-content-center align-items-center w-100 mt-3 mb-3">
