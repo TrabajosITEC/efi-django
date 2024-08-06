@@ -39,7 +39,7 @@ class OfferCreate(View):
         return render(
             request,
             "offers/create.html",
-            dict(form=form, formPayments=formPayments, formImage=formImage),
+            dict(form=form, formPayments=formPayments),
         )
 
     def post(self, request):
@@ -63,16 +63,16 @@ class OfferCreate(View):
                         payment=payment
                     )
             
-            images = request.FILES.getlist('images')  
-            descriptions = request.POST.getlist('descriptions')  
+                images = request.FILES.getlist('images')  
+                descriptions = request.POST.getlist('descriptions')  
 
-            for i, image in enumerate(images):
-                description = descriptions[i] if i < len(descriptions) else ''  
-                OfferImage.objects.create(
-                    offer=new_offer,
-                    image=image,
-                    description=description
-                )
+                for i, image in enumerate(images):
+                    description = descriptions[i] if i < len(descriptions) else ''  
+                    OfferImage.objects.create(
+                        offer=new_offer,
+                        image=image,
+                        description=description
+                    )
 
             return redirect('listOffers')
         else:
@@ -145,7 +145,6 @@ class OfferUpdate(View):
                 form = form,
                 # offer=offer,
                 formPayments=formPayments,
-                formImage=formImage
             )
         )
     
