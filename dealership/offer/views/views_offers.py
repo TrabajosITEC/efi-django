@@ -4,7 +4,7 @@ from django.urls import reverse
 from offer.forms import OfferForm, OfferImageForm
 from payments.forms import PaymentsForm
 from comments.forms import CommentForm
-from offer.models import Offer, OfferGroup, OfferImage
+from offer.models import Offer, OfferGroup, OfferImage, OfferPayment
 from offer.repositories.offer_repository import OfferRepository
 from offer.repositories.offer_group_repository import OfferGroupRepository
 from comments.repositories.comment_repository import CommentRepository
@@ -119,6 +119,9 @@ class OfferUpdate(View):
             'year': offer.year,
         }
 
+        current_payments = OfferPayment.objects.filter(offer=offer).values_list('payment', flat=True)
+        formPayments = PaymentsForm(initial={'payment_options': current_payments})
+
         form = OfferForm(initial=initial_data)
 
         return render(
@@ -131,3 +134,38 @@ class OfferUpdate(View):
                 formImage=formImage
             )
         )
+    
+    def post(self, request, id):
+        form = OfferForm(request.POST)
+        formPayments = PaymentsForm(request.POST)
+        formImage = OfferImageForm(request.POST, request.FILES)
+
+        offer = repo_off.get_by_id(id=id)
+
+        if form.is_valid() and formPayments.is_valid():
+            updated_offer = repo_off.update(
+                offer=offer,
+                car=form.cleaned_data["cars"],  # Nota: cambiado de 'cars' a 'car' para coincidir con el método del repositorio
+                location=form.cleaned_data["location"],
+                price=form.cleaned_data["price"],
+                year=form.cleaned_data["year"],
+            )
+
+            # Actualizar la imagen si se proporciona una nueva
+            if formImage.is_valid() and formImage.cleaned_data.get('image'):
+                new_image = formImage.save(commit=False)
+                new_image.offer = updated_offer
+                new_image.save()
+
+            # Actualizar los métodos de pago
+            repo_off.update_payments(updated_offer, formPayments.cleaned_data["payment_options"])
+
+            return redirect("listOffers")
+        else:
+            return render(
+                request,
+                "offers/update.html",
+                dict(form=form, formPayments=formPayments, formImage=formImage, offer=offer),
+            )
+
+            

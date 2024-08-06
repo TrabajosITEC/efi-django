@@ -45,3 +45,16 @@ class OfferRepository:
 
     def create_payment(self, offer=Offer, payment=Payment):
         return OfferPayment.objects.create(offer=offer, payment=payment)
+    
+    def update(self, offer=Offer, car=Car, location=Locality, price=int, year=int) -> Offer:
+        offer.cars = car
+        offer.location = location
+        offer.price = price
+        offer.year = year
+        offer.save()
+        return offer
+
+    def update_payments(self, offer: Offer, payments: List[Payment]):
+        OfferPayment.objects.filter(offer=offer).delete()
+        for payment in payments:
+            self.create_payment(offer=offer, payment=payment)
