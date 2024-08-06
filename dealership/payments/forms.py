@@ -1,7 +1,9 @@
 from django import forms
 from payments.models import Payment
 from payments.repositories.paymente_repositorie import PaymentRepository
+
 repo_pay = PaymentRepository()
+
 
 class PaymentsForm(forms.ModelForm):
     payments = repo_pay.get_all()

@@ -19,4 +19,5 @@ miniblog/**/*.pyc
 miniblog/db.sqlite3
 
 .data
-migrations/
+**/migrations/
+media/

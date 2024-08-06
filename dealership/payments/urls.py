@@ -8,6 +8,8 @@ from payments.views import (
     PaymentDetail
 
 )
+
+
 urlpatterns = [
     path(route = 'create/', view = CreatePayment.as_view(), name = 'payment_create'),
     path(route = 'list/', view = PaymentList.as_view(), name = 'payments_list'),

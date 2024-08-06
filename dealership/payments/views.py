@@ -6,18 +6,15 @@ from django.views import (
 from payments.models import Payment
 from payments.forms import PaymentCreateForm
 from payments.repositories.paymente_repositorie import PaymentRepository
+
 repo_payment = PaymentRepository()
+
 
 class PaymentList(View):
     def get(self, request):
         payments = repo_payment.get_all()
-        return render(
-            request,
-            'payments/list.html',
-            dict(
-                payments=payments
-            )
-        )
+        return render(request, "payments/list.html", dict(payments=payments))
+
 
 class CreatePayment(View):
     def get(self, request):
@@ -41,7 +38,7 @@ class CreatePayment(View):
 
 class PaymentDelete(View):
     def get(self, request, id):
-        payment = repo_payment.get_by_id(id=id) 
+        payment = repo_payment.get_by_id(id=id)
         repo_payment.delete(payment=payment)
         return redirect('payments_list')
     
@@ -66,7 +63,7 @@ class PaymentUpdate(View):
         if form.is_valid():        
             repo_payment.update(
                 payment=repo_payment.get_by_id(id=id),
-                nombre=form.cleaned_data['name'],
+                nombre=form.cleaned_data["name"],
             )
           
             return redirect ('payments_list')
