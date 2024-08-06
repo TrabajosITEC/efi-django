@@ -13,7 +13,6 @@ from comments.views.views_comment import(
     CommentUpdate,
 )
 
-from offer.views.offer_image_view import OfferImageView
 
 urlpatterns = [
     path(route = 'list/', view = OfferList.as_view(), name = 'listOffers'),
@@ -22,7 +21,6 @@ urlpatterns = [
     path(route = 'detail/<int:id>/delete/', view = CommentDelete.as_view(), name = 'DeleteComment'),
     path(route = 'detail/<int:id>/updateComment/', view = CommentUpdate.as_view(), name = 'UpdateComment'),
     path(route = 'detail/<int:id>/update/', view = OfferUpdate.as_view(), name = 'UpdateOffer'),
-    path(route = 'offer_images/', view = OfferImageView.as_view(), name = 'offer_images')
 ] 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

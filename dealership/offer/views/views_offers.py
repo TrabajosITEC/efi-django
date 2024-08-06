@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.urls import reverse
-from offer.forms import OfferForm, OfferImageForm
+from offer.forms import OfferForm
 from payments.forms import PaymentsForm
 from comments.forms import CommentForm
 from offer.models import Offer, OfferGroup, OfferImage, OfferPayment
@@ -26,7 +26,7 @@ class OfferList(View):
             request,
             "offers/list.html",
             dict(
-                # offers = all_offers
+            
                 grouped_offers=grouped_offers    
             )
         )
@@ -35,7 +35,6 @@ class OfferCreate(View):
     def get(self, request):
         form = OfferForm()
         formPayments = PaymentsForm()
-        formImage = OfferImageForm()
 
         return render(
             request,
@@ -46,10 +45,7 @@ class OfferCreate(View):
     def post(self, request):
         form = OfferForm(request.POST)
         formPayments = PaymentsForm(request.POST)
-        formImage = OfferImageForm(request.POST, request.FILES)
-        if form.is_valid() and formImage.is_valid():
-            # Crear la oferta
-
+        if form.is_valid():
             new_offer = repo_off.create(
                 cars=form.cleaned_data["cars"],
                 location=form.cleaned_data["location"],
@@ -57,26 +53,35 @@ class OfferCreate(View):
                 year=form.cleaned_data["year"],
                 seller=request.user,
             )
-            # Guardar la imagen relacionada con la oferta
-
-            new_image = formImage.save(commit=False)
-            new_image.offer = new_offer
-            new_image.save()
 
             # Guardar las opciones de pago si el formulario de pagos es válido
 
             if formPayments.is_valid():
-                for payment in formPayments.cleaned_data["payment_options"]:
-                    repo_off.create_payment(offer=new_offer, payment=payment)
-            return redirect("listOffers")
+                for payment in formPayments.cleaned_data['payment_options']:
+                    repo_off.create_payment(
+                        offer=new_offer,
+                        payment=payment
+                    )
+            
+            images = request.FILES.getlist('images')  
+            descriptions = request.POST.getlist('descriptions')  
+
+            for i, image in enumerate(images):
+                description = descriptions[i] if i < len(descriptions) else ''  
+                OfferImage.objects.create(
+                    offer=new_offer,
+                    image=image,
+                    description=description
+                )
+
+            return redirect('listOffers')
         else:
             return render(
                 request,
                 'offers/create.html',
                 dict(
                     form=form,
-                    formPayments=formPayments,
-                    formImage=formImage
+                    formPayments=formPayments
                 )
             )   
         
@@ -119,7 +124,7 @@ class OfferUpdate(View):
     def get(self, request, id):
         offer = repo_off.get_by_id(id=id)
         formPayments = PaymentsForm()
-        formImage = OfferImageForm()
+
 
         initial_data = {
             'cars': offer.cars,
@@ -147,7 +152,6 @@ class OfferUpdate(View):
     def post(self, request, id):
         form = OfferForm(request.POST)
         formPayments = PaymentsForm(request.POST)
-        formImage = OfferImageForm(request.POST, request.FILES)
 
         offer = repo_off.get_by_id(id=id)
 
@@ -160,11 +164,7 @@ class OfferUpdate(View):
                 year=form.cleaned_data["year"],
             )
 
-            # Actualizar la imagen si se proporciona una nueva
-            if formImage.is_valid() and formImage.cleaned_data.get('image'):
-                new_image = formImage.save(commit=False)
-                new_image.offer = updated_offer
-                new_image.save()
+
 
             # Actualizar los métodos de pago
             repo_off.update_payments(updated_offer, formPayments.cleaned_data["payment_options"])
@@ -174,7 +174,7 @@ class OfferUpdate(View):
             return render(
                 request,
                 "offers/update.html",
-                dict(form=form, formPayments=formPayments, formImage=formImage, offer=offer),
+                dict(form=form, formPayments=formPayments, offer=offer),
             )
 
             

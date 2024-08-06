@@ -4,17 +4,18 @@
 {% block title %} Ofertas - Crear Oferta | AutoMundo {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'styles/css/styles-offer.css' %}">
+<link rel="stylesheet" href="{% static 'styles/css/styles-offer.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="container">
   <div class="d-flex flex-column justify-content-center align-items-center mt-5">
     <div class="d-flex flex-row align-items-center">
-      <img class="mr-3 create-offer-img" src="{% static 'images/DrawKit-Vector-Illustration-ecommerce-02-Photoroom.png' %}" alt="">
+      <img class="mr-3 create-offer-img"
+        src="{% static 'images/DrawKit-Vector-Illustration-ecommerce-02-Photoroom.png' %}" alt="">
       <div class="ms-5">
         <h2 class="text-justify mb-4"><b><i>Publicá </i></b>tu<br>oferta</h4>
-        <a href="{% url 'listOffers' %}" class="btn btn-dark mb-3">Volver al listado de ofertas</a>
+          <a href="{% url 'listOffers' %}" class="btn btn-dark mb-3">Volver al listado de ofertas</a>
       </div>
     </div>
     <div class="horizontal-rule mt-4"></div>
@@ -63,23 +64,15 @@
           <div>
             {{ formPayments.payment_options }}
           </div>
-        </div>
-      </div>
-      <div class="card h-25 form-group row justify-content-center align-items-left w-100 mt-3 mb-3">
-        <p class="ps-4 mb-4 text-left"><b>Imágenes del producto</b></p>
-        <hr class="w-100">
-        <div class="d-flex col-lg-9 w-100 justify-content-center">
-          <div class="mt-3">
-            {{ formImage.image }}
-          </div>
-        </div>
-      </div>
-      <div class="card h-25 form-group row justify-content-center align-items-left w-100 mt-3 mb-3">
-        <p class="ps-4 text-left"><b>Descripción del producto</b></p>
-        <hr class="w-100">
-        <div class="d-flex col-lg-9 w-100 justify-content-center">
-          <div>
-            {{ formImage.description }}
+          <hr>
+          <div id="image-section">
+            <div class="input-group">
+              <label for="images">Upload images:</label>
+              <input id="image-input" name="images" type="file" multiple class="form-control-file"
+                onchange="updateDescriptions()">
+            </div>
+            <div id="description-section">
+            </div>
           </div>
         </div>
       </div>
@@ -94,4 +87,33 @@
     </form>
   </div>
 </div>
+
+<script>
+  function updateDescriptions() {
+    const fileInput = document.getElementById('image-input');
+    const descriptionSection = document.getElementById('description-section');
+    const files = fileInput.files;
+
+    descriptionSection.innerHTML = '';
+
+    for (let i = 0; i < files.length; i++) {
+      const descriptionDiv = document.createElement('div');
+      descriptionDiv.className = 'input-group mt-3';
+
+      const label = document.createElement('label');
+      label.innerText = `Description for Image ${i + 1}:`;
+      descriptionDiv.appendChild(label);
+
+      const input = document.createElement('input');
+      input.name = 'descriptions';
+      input.type = 'text';
+      input.placeholder = 'Enter description';
+      input.className = 'form-control';
+      descriptionDiv.appendChild(input);
+
+      descriptionSection.appendChild(descriptionDiv);
+    }
+  }
+</script>
+
 {% endblock %}

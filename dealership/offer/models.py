@@ -50,12 +50,11 @@ class Offer(models.Model):
 class OfferImage(models.Model):
     offer = models.ForeignKey(
         Offer,
-        on_delete = models.CASCADE, 
-        related_name = 'images',
-        null=True
+        on_delete=models.CASCADE, 
+        related_name='images'
     )
-    image = models.ImageField(upload_to='offer_images/', null = True) 
-    description = models.TextField(blank = True, null = True)
+    image = models.ImageField(upload_to='offer_images/', null=True) 
+    description = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.description or f'Image of {self.offer}'

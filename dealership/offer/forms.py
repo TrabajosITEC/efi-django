@@ -5,7 +5,7 @@ from locations.repositories.locality_repository import LocalityRepository
 repo_car = CarRepository()
 repo_loc = LocalityRepository()
 
-from offer.models import Offer, OfferImage
+from offer.models import Offer
 
 class OfferForm(forms.ModelForm):
     cars = forms.ModelChoiceField(
@@ -72,25 +72,3 @@ class OfferForm(forms.ModelForm):
 #     "SelectDateWidget",
 # )from django import forms
 
-class OfferImageForm(forms.ModelForm):
-    class Meta: 
-        model = OfferImage
-        fields = [
-            'image',
-            'description',
-        ]
-
-        widgets = {
-            'image': forms.ClearableFileInput(attrs={
-                'class': 'form-control',
-                'accept': 'image/*',
-                'placeholder': 'Upload an image',
-            }),
-
-            'description': forms.Textarea(attrs={
-                'class': 'form-control',
-                'placeholder': 'Describí tu producto',
-                'rows': 3,
-            }),
-        
-        }
