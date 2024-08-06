@@ -8,6 +8,7 @@ db.sqlite3
 __pycache__
 */__pycache__
 __pycache__/
+**/__pycache__/
 
 toDo.txt
 env/
@@ -19,5 +20,7 @@ miniblog/**/*.pyc
 miniblog/db.sqlite3
 
 .data
+*/migrations
+migrations/
 **/migrations/
 media/
