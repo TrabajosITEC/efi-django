@@ -33,7 +33,7 @@ class OfferForm(forms.ModelForm):
         widgets = {
             "cars": forms.Select(),
             "location": forms.Select(),
-            "price": forms.NumberInput(attrs={"class": "form-control"}),
+            "price": forms.NumberInput(attrs={"class": "form-control", "max": 10000000}),
             "year": forms.NumberInput(attrs={"class": "form-control", "min": 2010})
         }
 

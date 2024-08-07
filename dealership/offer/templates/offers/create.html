@@ -4,7 +4,7 @@
 {% block title %} Ofertas - Crear Oferta | AutoMundo {% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'styles/css/styles-offer.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/css/styles-offer.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -56,10 +56,10 @@
           {{ form.year }}
         </div>
       </div>
-      <div class="card h-25 form-group row justify-content-center align-items-center w-100 mt-3 mb-3">
-        <p class="ps-4 pt-3 text-left"><b>Métodos de Pago</b></p>
+      <div class="card form-group row justify-content-center align-items-center w-100 mt-3 mb-3" style="height: auto;">
+        <p class="ps-4 pt-4 text-left"><b>Métodos de Pago</b></p>
         <hr class="w-100">
-        <div class="d-flex col-lg-9 w-100 justify-content-start">
+        <div class="d-flex col-lg-9 w-100 mb-3 justify-content-start">
           <label class="label-inputs">Elegí métodos de pago disponibles</label>
           <div>
             {{ formPayments.payment_options }}
@@ -68,19 +68,17 @@
         </div>
       </div>
 
-      <div class="card h-25 form-group row justify-content-center align-items-center w-100 mt-3 mb-3">
+      <div class="card form-group row justify-content-center align-items-center w-100 mt-3 mb-3" style="height: auto;">
         <p class="ps-4 pt-3 text-left"><b>Imágenes</b></p>
         <hr class="w-100">
-        <div class="d-flex col-lg-9 w-100 justify-content-start">
+        <div class="d-flex col-lg-9 w-100 mb-3 justify-content-start">
           <label class="label-inputs">Selecciona las imágenes que desees</label>
           <div>
             <div id="image-section">
-              <div class="input-group">
-                <input id="image-input" name="images" type="file" multiple class="form-control-file"
-                  onchange="updateDescriptions()">
+              <div class="input-group mt-2">
+                <input id="image-input" name="images" type="file" multiple class="form-control" onchange="updateDescriptions()">
               </div>
-              <div id="description-section">
-              </div>
+              <div id="description-section"></div>
             </div>
           </div>
           <hr>
@@ -89,7 +87,7 @@
 
 
       <div class="card h-25 form-group row justify-content-center align-items-left w-100 mt-3 mb-5">
-        <p class="ps-4 text-left"><b>Finzalizar venta</b></p>
+        <p class="ps-4 text-left"><b>Publicar oferta</b></p>
         <hr class="w-100">
         <div class="d-flex col-lg-9 w-100 justify-content-center">
           <a href="{% url 'listOffers' %}" class="btn btn-outline-primary mt-2 mb-4 w-100 me-3">Volver atrás</a>

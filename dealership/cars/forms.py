@@ -66,5 +66,5 @@ class CarForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarForm, self).__init__(*args, **kwargs)
     
-        self.fields['car_model'].empty_label = 'Modelo de auto'
+        self.fields['car_model'].empty_label = 'Modelo de vehículo'
         self.fields['category'].empty_label = 'Categoría'
