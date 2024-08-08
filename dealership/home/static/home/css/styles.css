@@ -110,3 +110,22 @@ nav a:hover, .dropdown button:hover{
   font-size: 12px;
 
 }
+
+.carousel-img{
+  height: 550px;
+  mask-image: 
+  linear-gradient(
+    to left,
+    black 80%,
+    transparent
+
+  ),
+  
+  linear-gradient(
+    to right,
+    black 80%,
+    transparent
+
+  ),
+
+}
