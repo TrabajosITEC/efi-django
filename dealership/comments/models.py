@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Comment(models.Model):
     offer = models.ForeignKey(
-        Offer, on_delete=models.PROTECT, related_name="comments", null=False
+        Offer, on_delete=models.CASCADE, related_name="comments", null=False
     )
     profile = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="comment", null=False

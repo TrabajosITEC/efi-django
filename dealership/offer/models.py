@@ -30,7 +30,7 @@ class Offer(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     year = models.IntegerField(default=0)
     offer_group = models.ForeignKey(
-        OfferGroup, on_delete=models.PROTECT, related_name="offer", null=False
+        OfferGroup, on_delete=models.CASCADE, related_name="offer", null=False
     )
     seller = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="offer", null=False
@@ -61,7 +61,7 @@ class OfferImage(models.Model):
 
 class OfferPayment(models.Model):
     offer = models.ForeignKey(
-        Offer, on_delete=models.PROTECT, related_name="offer_payments", null=False
+        Offer, on_delete=models.CASCADE, related_name="offer_payments", null=False
     )
     payment = models.ForeignKey(
         Payment, on_delete=models.PROTECT, related_name="offer_payments", null=False

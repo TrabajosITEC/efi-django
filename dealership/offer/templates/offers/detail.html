@@ -13,7 +13,12 @@
                     <p class="card-text">Ubicación: {{ offer.location }}</p>
                     <p class="card-text">Precio: {{ offer.price }}</p>
                     <p class="card-text">Año: {{ offer.year }}</p>
-
+                    <h5>Metodos de pago: </h5>
+                    {% for payment in payments_form %}
+                        <ul>
+                            <li>{{ payment.payment.name }}</li>
+                        </ul>
+                    {% endfor %}
                     <h4>Imágenes</h4>
                     {% if image %}
                     <div class="row">
@@ -71,7 +76,7 @@
                 </div>
                 <div>
                     {% if request.user.is_staff or comment.profile.id == request.user.id %}
-                    <a href="{% url 'DeleteComment' comment.id %}" class="btn btn-danger btn-sm me-2">Eliminar</a>
+                        <a href="{% url 'DeleteComment' comment.id %}" class="btn btn-danger btn-sm me-2">Eliminar</a>
                     {% endif %}
                     {% if comment.profile.id == request.user.id %}
                     <a href="{% url 'UpdateComment' comment.id %}" class="btn btn-success btn-sm">Editar</a>

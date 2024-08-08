@@ -33,6 +33,7 @@
                 <h5>{{ offer_group.cars }}</h5>
             </div>
             <div class="card-body">
+                
                 <table class="table border">
                     <thead>
                         <tr class="align-middle">
@@ -60,9 +61,13 @@
                                 {% if offer.seller.profile.is_seller and offer.seller.id == request.user.id %}
                                 <a href="{% url 'UpdateOffer' offer.id %}" class="btn btn-success btn-sm">Editar</a>
                                 {% endif %}
+                                {% if request.user.is_staff or offer.seller.profile.is_seller and offer.seller.id == request.user.id %}
+                                    <a href="{% url 'DeleteOffer' offer.id %}" class="btn btn-danger btn-sm me-2">Eliminar</a>
+                                 {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
+                        
                     </tbody>
                 </table>
             </div>

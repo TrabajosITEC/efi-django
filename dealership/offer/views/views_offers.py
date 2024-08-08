@@ -88,14 +88,17 @@ class OfferCreate(View):
 class OfferDetail(View):
     def get(self, request, id):
         offer = repo_off.get_by_id(id)
+        payments_form = repo_off.filter_payments_by_offer(offer)
         image = OfferImage.objects.filter(offer=offer)
         formComment = CommentForm()
         comments_offer = repo_comment.filter_by_offer(offer)
+
         return render(
             request,
             "offers/detail.html",
             dict(
                 offer=offer,
+                payments_form=payments_form,
                 image=image,
                 formComment=formComment,
                 comments_offer=comments_offer,
@@ -176,4 +179,8 @@ class OfferUpdate(View):
                 dict(form=form, formPayments=formPayments, offer=offer),
             )
 
-            
+class OfferDelete(View):
+    def get(self, request, id):
+        offer = repo_off.get_by_id(id=id)
+        repo_off.delete(offer=offer)
+        return redirect("listOffers")

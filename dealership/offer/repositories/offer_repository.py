@@ -1,4 +1,4 @@
-from offer.models import Offer, OfferPayment
+from offer.models import Offer, OfferPayment, OfferGroup
 from typing import List, Optional
 from cars.models import Car
 from payments.models import Payment
@@ -58,3 +58,14 @@ class OfferRepository:
         OfferPayment.objects.filter(offer=offer).delete()
         for payment in payments:
             self.create_payment(offer=offer, payment=payment)
+    
+    def filter_payments_by_offer(self, offer: Offer) -> Optional[Payment]:
+        payments_form = OfferPayment.objects.filter(offer=offer)
+        return payments_form
+    
+    def delete(self, offer: Offer):
+        offer.delete()
+        all_offers = self.filter_by_attr(offer.offer_group)
+        if all_offers.count() == 0:
+            OfferGroup.objects.filter(cars=offer.cars).delete()
+        
