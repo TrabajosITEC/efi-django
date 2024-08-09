@@ -61,6 +61,9 @@
                       <img src="{% static 'images/pencil-square.svg' %}" class="" alt="Editar mi oferta" title="Editar mi oferta">
                     </a>
                   {% endif %}
+                  {% if request.user.is_staff or offer.seller.profile.is_seller and offer.seller.id == request.user.id %}
+                    <a href="{% url 'DeleteOffer' offer.id %}" class="btn btn-outline-danger me-2"><img src="{% static 'images/trash.svg' %}" alt=""></a>
+                  {% endif %}
                 </td>
               </tr>
               {% endfor %}
