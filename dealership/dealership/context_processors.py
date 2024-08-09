@@ -7,3 +7,8 @@ def all_names_categories(request):
         names_categories = names
     )
 
+def current_username(request):
+    return dict(
+        username = request.user
+
+    )

@@ -18,8 +18,11 @@
     <h4 class="text-center mb-5">Registrar País</h4>
     {% csrf_token %}
     <div class="d-flex flex-column align-items-center">
-      <div class="form-group row align-items-center w-100 mb-3">
-        <div class="col-lg-9 w-100">
+      <div class="card h-50 form-group row justify-content-center align-items-center w-100 mt-3 mb-3">
+        <p class="ps-4 mt-3 text-left"><b>Países</b></p>
+        <hr class="w-100">
+        <div class="d-flex col-lg-9 w-100 justify-content-center pb-3">
+          <label class="label-inputs">Registrá un País</label>
           {{ form.name }}
         </div>
       </div>

@@ -59,7 +59,24 @@ table{
 }
 
 .create-offer-img{
-  width: 380px;
+  width: 400px;
   height: 380px;
+
+}
+
+.create-comment-img{
+  width: 250px;
+  height: 320px;
+
+}
+
+.attrs{
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.attrs:hover{
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
 
 }

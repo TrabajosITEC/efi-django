@@ -28,3 +28,9 @@ table{
   background: linear-gradient(to right, white, black, white);
 
 }
+
+.label-inputs{
+  font-size: 11px;
+  padding: 15px;
+
+}

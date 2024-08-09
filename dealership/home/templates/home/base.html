@@ -14,100 +14,117 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg d-flex align-items-center">
-    <div class="p-3 d-flex justify-content-center align-items-center">
-      <a href="{% url 'index' %}" class="redirect-brand">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid p-2">
+      <a class="navbar-brand" href="{% url 'index' %}">
         <img class="img-brand" src="{% static 'home/images/sports-car_11949969.png' %}" alt="">
       </a>
-    </div>
-    <div class="container-fluid ms-5">
-      <div class="d-flex justify-content-center align-items-center">
-        <a class="navbar-brand p-2" href="{% url 'index' %}">Inicio</a>
-        <div class="vertical-line me-3"></div>
-        <a class="navbar-brand p-2" href="">Nuestros Vehículos</a>
-        <div class="navbar-brand dropdown">
-          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Categorías
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'index' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'listOffers' %}">Nuestras Ofertas</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              {% for name in names_categories %}
+              <li><a class="dropdown-item text-dark" href="#">{{name}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <button class="btn p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id1" aria-controls="Id1">
+            <img class="hamburguer-logo mx-2" src="{% static 'home/images/list.svg' %}">
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {% for name in names_categories %}
-            <li><a class="dropdown-item" href="#">{{name}}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownProfileButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'home/images/person-lines-fill.svg' %}" alt="">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownProfileButton">
+              {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="dropdown-item text-decoration-none text-dark">Cerrar Sesión</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="dropdown-item text-decoration-none text-dark">Ingresá</a>
+                <hr class="dropdown-divider">
+                <a href="{% url 'register' %}" class="dropdown-item text-decoration-none text-dark">Registrate</a>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
       </div>
-    </div>
-    <div class="ms-auto p-3 w-25">
-      {% if user.is_authenticated %}
-      <a href="{% url 'logout' %}" class="btn w-100 btn-outline-dark p-2">Cerrar Sesión</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="btn w-100 btn-outline-dark p-2">Iniciar Sesión</a>
-      <a href="{% url 'register' %}" class="btn w-100 btn-outline-dark p-2 mt-2">Registrarse</a>
-      {% endif %}
     </div>
   </nav>
-  <div class="container-hamburguer-menu">
-    <button class="btn p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id1" aria-controls="Id1">
-      <img class="hamburguer-logo mx-2" src="{% static 'home/images/list.svg' %}">
-    </button>
-
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="Id1"
-      aria-labelledby="Enable both scrolling & backdrop">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title subtitle" id="Enable both scrolling & backdrop">
-          Bienvenido a AutoMundo
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="Id1"
+    aria-labelledby="Enable both scrolling & backdrop">
+    <div class="offcanvas-header">
+      <h6 class="offcanvas-title" id="Enable both scrolling & backdrop">
         {% if user.is_authenticated %}
-        {% if user.is_staff %}
-        <div>
-          <h6 class="mb-4"><b>Ubicaciones</b></h6>
-          <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Administrar
-            Ubicaciones</a>
-          <hr>
-        </div>
-        <div>
-          <h6 class="mt-4 mb-4"><b>Vehículos</b></h6>
-          <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Vehículos</a>
-          <hr>
-        </div>
-        <div>
-          <h6 class="mt-4 mb-4"><b>Métodos de Pago</b></h6>
-          <a href="{% url 'payments_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Métodos de
-            Pago</a>
-          <hr>
-        </div>
-        <div>
-          <h6 class="mt-4 mb-4"><b>Ofertas</b></h6>
-          <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Administrar Ofertas</a>
-          <hr>
-        </div>
-        {% elif not user.is_staff %}
-        <div>
-          <a href="{% url 'index' %}" class="link p-2 text-decoration-none text-dark">Inicio</a>
-          <hr>
-          <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Ofertas</a>
-          <hr>
-          <a href="{% url 'logout' %}" class="link p-2 text-decoration-none text-danger">Cerrar Sesión</a>
-        </div>
-        {% endif %}
+        ¡Hola, <b>{{username}}!</b>
+        <br>
+        <i>Bienvenido a AutoMundo</i>
         {% else %}
-        <p>Nosotros</p>
-        <hr>
+        <i>Bienvenido a AutoMundo</i>
         {% endif %}
+      </h6>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      {% if user.is_authenticated %}
+      {% if user.is_staff %}
+      <div>
+        <h6 class="mb-4"><b>Ubicaciones</b></h6>
+        <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Administrar
+          Ubicaciones</a>
+        <hr>
       </div>
+      <div>
+        <h6 class="mt-4 mb-4"><b>Vehículos</b></h6>
+        <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Vehículos</a>
+        <hr>
+      </div>
+      <div>
+        <h6 class="mt-4 mb-4"><b>Métodos de Pago</b></h6>
+        <a href="{% url 'payments_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Métodos de
+          Pago</a>
+        <hr>
+      </div>
+      <div>
+        <h6 class="mt-4 mb-4"><b>Ofertas</b></h6>
+        <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Administrar Ofertas</a>
+        <hr>
+      </div>
+      {% elif not user.is_staff %}
+      <div>
+        <a href="{% url 'index' %}" class="link p-2 text-decoration-none text-dark">Inicio</a>
+        <hr>
+        <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Ofertas</a>
+        <hr>
+        <a href="{% url 'logout' %}" class="link p-2 text-decoration-none text-danger">Cerrar Sesión</a>
+      </div>
+      {% endif %}
+      {% else %}
+      <p class="p-2 text-decoration-none text-dark">Nosotros</p>
+      <hr>
+      <a href="{% url 'listOffers' %}" class="p-2 text-decoration-none text-dark">Ofertas</a>
+      {% endif %}
     </div>
   </div>
+
   <div class="container mt-4">
     {% block content %}
     {% endblock %}
   </div>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+  </script>
 </body>
-
 </html>
