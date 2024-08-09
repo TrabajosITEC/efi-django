@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} Métodos de Pago - Listado | AutoMundo {% endblock %}
+{% block title %} Métodos de Pago - Listado de Métodos de Pago | AutoModo {% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/css/styles-payments.css' %}">
@@ -32,13 +32,13 @@
         <td class="align-middle subtitle">{{ payment.id }}</td>
         <td class="align-middle">{{ payment.name }}</td>
         <td>
-          <a href="{% url 'payment_detail' payment.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'payment_detail' payment.id %}" class="btn btn-outline-info text-decoration-none me-1">
             <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalles Método de Pago" title="Más información">
           </a>
-          <a href="{% url 'payment_delete' payment.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'payment_delete' payment.id %}" class="btn btn-outline-danger text-decoration-none me-1">
             <img src="{% static 'images/trash3.svg' %}" alt="Borrar País" title="Borrar País">
           </a>
-          <a href="{% url 'payment_update' payment.id %}" class="btn btn-outline-dark text-decoration-none">
+          <a href="{% url 'payment_update' payment.id %}" class="btn btn-outline-success text-decoration-none">
             <img src="{% static 'images/pencil-square.svg' %}" alt="Editar País" title="Editar País">
           </a>
         </td>

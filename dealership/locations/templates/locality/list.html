@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} Localizaciones - Localidades | AutoMundo {% endblock %}
+{% block title %} Localidades - Listado de Localidades | AutoModo {% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/css/styles-location.css' %}">
@@ -34,13 +34,13 @@
         <td class="align-middle">{{ locality.name }}</td>
         <td class="align-middle">{{ locality.province }}</td>
         <td>
-          <a href="{% url 'locality_detail' locality.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'locality_detail' locality.id %}" class="btn btn-outline-info text-decoration-none me-1">
             <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalles Localidad" title="Más información">
           </a>
-          <a href="{% url 'locality_delete' locality.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'locality_delete' locality.id %}" class="btn btn-outline-danger text-decoration-none me-1">
             <img src="{% static 'images/trash3.svg' %}" alt="Borrar Localidad" title="Borrar Localidad">
           </a>
-          <a href="{% url 'locality_update' locality.id %}" class="btn btn-outline-dark text-decoration-none">
+          <a href="{% url 'locality_update' locality.id %}" class="btn btn-outline-success text-decoration-none">
             <img src="{% static 'images/pencil-square.svg' %}" alt="Editar Localidad" title="Editar Localidad">
           </a>
         </td>

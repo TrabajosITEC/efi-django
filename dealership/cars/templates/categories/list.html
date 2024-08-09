@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} Vehículos - Categorías | AutoMundo {% endblock %}
+{% block title %} Categorías - Listado de Categorías | AutoModo {% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/css/styles-cars.css' %}">
@@ -33,13 +33,13 @@
           <td class="align-middle">{{ category.id }}</td>
           <td class="align-middle">{{ category.name }}</td>   
           <td>
-          <a href="{% url 'category_detail' category.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'category_detail' category.id %}" class="btn btn-outline-info text-decoration-none me-1">
             <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalle Categoría" title="Más información">
           </a>
-          <a href="{% url 'category_delete' category.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'category_delete' category.id %}" class="btn btn-outline-danger text-decoration-none me-1">
             <img src="{% static 'images/trash3.svg' %}" alt="Borrar Categoría" title="Borrar Categoría">
           </a>
-          <a href="{% url 'category_update' category.id %}" class="btn btn-outline-dark text-decoration-none">
+          <a href="{% url 'category_update' category.id %}" class="btn btn-outline-success text-decoration-none">
             <img src="{% static 'images/pencil-square.svg' %}" alt="Editar Categoría" title="Editar Categoría">
           </a>
           </td>

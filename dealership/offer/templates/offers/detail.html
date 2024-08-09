@@ -1,7 +1,7 @@
 {% extends "home/base.html" %}
 {% load static %}
 
-{% block title %} Ofertas - {{offer.cars}} | AutoMundo {% endblock %}
+{% block title %} Ofertas - Detalle | {{offer.cars}} | AutoModo {% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/css/styles-offer.css' %}">
@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="mt-5">
-  <img class="me-2" src="{% static 'images/arrow-90deg-left.svg' %}" alt=""><a class="text-decoration-none text-dark" href="{% url 'listOffers' %}">Volver atrás</a>  
+  <img class="me-2" src="{% static 'images/arrow-90deg-left.svg' %}" alt=""><a class="text-decoration-none text-dark" href="{% url 'listOffers' %}"><b>Volver atrás</b></a>  
 </div>
 <div class="container mb-5">
   <div class="row d-flex justify-content-center align-items-center">

@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %} Vehículos - Modelos | AutoMundo {% endblock %}
+{% block title %} Modelos - Listado de Modelos | AutoModo {% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/css/styles-cars.css' %}">
@@ -36,13 +36,13 @@
           <td class="align-middle">{{ car_model.name }}</td>
           <td class="align-middle">{{ car_model.brand.name }}</td>
           <td>
-            <a href="{% url 'car_model_detail' car_model.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+            <a href="{% url 'car_model_detail' car_model.id %}" class="btn btn-outline-info text-decoration-none me-1">
               <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalle Modelo" title="Más información">
             </a>
-            <a href="{% url 'car_model_delete' car_model.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+            <a href="{% url 'car_model_delete' car_model.id %}" class="btn btn-outline-danger text-decoration-none me-1">
               <img src="{% static 'images/trash3.svg' %}" alt="Borrar Modelo" title="Borrar Vehículo">
             </a>
-            <a href="{% url 'car_model_update' car_model.id %}" class="btn btn-outline-dark text-decoration-none">
+            <a href="{% url 'car_model_update' car_model.id %}" class="btn btn-outline-success text-decoration-none">
               <img src="{% static 'images/pencil-square.svg' %}" alt="Editar Modelo" title="Editar Vehículo">
             </a>
           </td>
