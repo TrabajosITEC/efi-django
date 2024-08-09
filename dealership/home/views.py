@@ -84,8 +84,35 @@ class RegisterView(View):
 
 class IndexView(View):
     def get(self, request):
-        return render(
-            request,
-            'home/index.html',
+        if request.user.is_authenticated:
+            data_current_user = {
+                'is_authenticated': True,
+                'username': request.user.username,
+                'is_staff': request.user.is_staff,
+                'email': request.user.email,
+                'first_name': request.user.first_name,
+                'last_name': request.user.last_name,
+                'is_seller': request.user.profile.is_seller
 
+            }
+        
+        else:
+            data_current_user = {
+                'is_authenticated': False,
+                'username': 'Invitado',
+                'is_staff': False,
+                'email': None,
+                'first_name': '',
+                'last_name': '',
+            
+            }
+        
+        return render(
+            request,    
+            'home/index.html',
+            dict(
+                current_user = data_current_user
+                
+            )
+        
         )

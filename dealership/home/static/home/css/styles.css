@@ -19,6 +19,11 @@ body{
 
 }
 
+.container{
+  margin-top: 200px;
+
+}
+
 form{
   margin-top: 80px;
   height: 700px;
@@ -115,10 +120,39 @@ nav a:hover, .dropdown button:hover{
   height: 550px;
   mask-image: 
   linear-gradient(
-    to left,
+    to bottom,
     black 80%,
     transparent
 
   )
+
+}
+
+.container-section-links{
+  gap: 170px;
+
+}
+
+.img-section-links{
+  width: 50px;
+  height: 50px;
+  filter: invert(1);
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.img-section-links:hover{
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+
+}
+
+.links:hover{
+  text-decoration: underline;
+
+}
+
+.modal-profile-index{
+  width: 2200px;
 
 }
