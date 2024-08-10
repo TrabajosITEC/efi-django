@@ -152,3 +152,27 @@ nav a:hover, .dropdown button:hover{
   width: 2200px;
 
 }
+
+iframe{
+  mask-image: linear-gradient(
+    to top,
+    black 80%,
+    transparent
+
+  )
+
+
+}
+.social-link{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 5px;
+
+}
+
+.social-link:hover{
+  background-color: rgba(118, 116, 116, 0.294);
+  border-radius: 10%; 
+  transition: background-color 0.3s, border 0.3s;
+
+}
