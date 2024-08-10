@@ -1,7 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %} Vehículos - Marcas | AutoMundo {% endblock %}
+{% block title %} Marcas - Listado de Marcas | AutoModo {% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/css/styles-cars.css' %}">
@@ -33,13 +33,13 @@
           <td class="align-middle">{{ brand.id }}</td>
           <td class="align-middle">{{ brand.name }}</td>   
           <td>
-          <a href="{% url 'brand_detail' brand.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'brand_detail' brand.id %}" class="btn btn-outline-info text-decoration-none me-1">
             <img src="{% static 'images/three-dots.svg' %}" class="" alt="Detalle Marca" title="Más información">
           </a>
-          <a href="{% url 'brand_delete' brand.id %}" class="btn btn-outline-dark text-decoration-none me-1">
+          <a href="{% url 'brand_delete' brand.id %}" class="btn btn-outline-danger text-decoration-none me-1">
             <img src="{% static 'images/trash3.svg' %}" alt="Borrar Marca" title="Borrar Marca">
           </a>
-          <a href="{% url 'brand_update' brand.id %}" class="btn btn-outline-dark text-decoration-none">
+          <a href="{% url 'brand_update' brand.id %}" class="btn btn-outline-success text-decoration-none">
             <img src="{% static 'images/pencil-square.svg' %}" alt="Editar Marca" title="Editar Marca">
           </a>
           </td>

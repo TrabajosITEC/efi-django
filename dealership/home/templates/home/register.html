@@ -1,18 +1,21 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
-{% block title %}Regístrate | AutoMundo {% endblock %}
+{% block title %}Regístrate | AutoModo {% endblock %}
 
 {% block content %}
-    <div class="container mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 95px;"> 
+    <div class="mt-5 mb-5 d-flex justify-content-center align-items-center" style="margin-left: 95px;"> 
       <div class="row align-items-stretch w-75">
         <div class="col-md-3 m-0 p-0 bg-white d-flex align-items-center justify-content-center shadow">
             <img src="{% static 'home/images/plugin.svg' %}" alt="" class="img-form">
         </div>
         <div class="col-md-9 m-0 p-0">
           <div class="container-form shadow p-5">
+            <div class="d-flex justify-content-center align-items-center mt-4">
+              <h2 class="text-start"><b>Conectate</b><br>con nosotros</h2>
+              <hr class="w-100">
+            </div>
             <form action="" method="POST">
-              <h2 class="mb-5 text-center title"><b>Conectate con nosotros</b></h2>
               {% csrf_token %}
               <div class="input-group">
                 {{ form.first_name }}
