@@ -7,6 +7,7 @@ Objetivo: Desarrrollar un sistema web para compra venta de autos utilizando Djan
 ## Tabla de contenidos
 - [Fundamento del programa](#fundamento-del-programa)
 - [Tipo de usuarios](#tipos-de-usuarios)
+- [Desarrollo grafico](#desarrollo-grafico)
 - [Entorno Virtual e Inicio Local](#entorno-virtual-e-inicio-local)
 - [Carga de datos](#carga-de-datos)
 - [Integrantes](#integrantes)
@@ -58,6 +59,10 @@ Funcionalidades:
 * Visualizar ofertas creadas por usuarios logueados.
 * Visualizar comentarios realizados por usuarios logueados.
 * Registrarse en la pagina cargando sus datos y seleccionando si desean hacerlo como usuario vendedor o no.
+
+## *Desarrollo grafico*
+***
+![imagen](dealership/home/static/home/images/cuadro.jpeg)
 
 ## *Entorno Virtual e Inicio Local*
 ***
@@ -157,3 +162,5 @@ Para verificar la funcionalidad del programa se sugiere el siguiente orden de us
 * Irazoqui, Marcos - m.irazoqui@itecriocuarto.org.ar
 * Martinez, Joaquin - jo.martinez@itecriocuarto.org.ar
 * Tobares, Juan Cruz - j.tobares@itecriocuarto.org.ar
+
+
