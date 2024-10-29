@@ -37,15 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+]
+
+SELF_APPS = [
     'cars',
     'comments',
     'locations',
     'payments',
     'users',
     'home',
-    'offer'
+    'offer',
+    'api',
+
+ ]
+
+EXTERNAL_APPS = [
+    'rest_framework',
     
 ]
+
+INSTALLED_APPS = INSTALLED_APPS + SELF_APPS + EXTERNAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
