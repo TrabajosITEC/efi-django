@@ -13,8 +13,6 @@ class UserRegisterViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         # El get se encarga de buscar el serialezer_class
         serializer = self.get_serializer(data=request.data)
-        print("SADsssssssssssssssssssssssssssssssssssssssssss")
-        print(request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         headers = self.get_success_headers(serializer.data)
