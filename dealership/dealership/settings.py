@@ -54,7 +54,7 @@ SELF_APPS = [
 
 EXTERNAL_APPS = [
     'rest_framework',
-    
+    'drf_yasg',
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + SELF_APPS + EXTERNAL_APPS
@@ -155,3 +155,29 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from drf_yasg import openapi
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Basic': {
+            'type': 'basic'
+        }
+    },
+    'USE_SESSION_AUTH': True,
+    'LOGIN_URL': 'login',
+    'LOGIN_REDIRECT_URL' : '/swagger/',  
+    'LOGOUT_URL': 'logout',    
+    'VALIDATOR_URL': None,
+    'OPERATIONS_SORTER': 'alpha'
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}

@@ -6,3 +6,4 @@ class CarViewSet(ModelViewSet):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
 
+

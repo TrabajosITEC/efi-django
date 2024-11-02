@@ -6,6 +6,10 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 class CarModelOffersListView(ListAPIView):
+    """
+    Comentarios vinculados a cada oferta realizada de un modelo de auto en particular.
+        
+    """
     # Lo defino pero no lo uso porque serializo las ofertas despues de filtradas
     serializer_class = OfferCommentsSerializer
     
@@ -14,6 +18,7 @@ class CarModelOffersListView(ListAPIView):
         return Offer.objects.filter(cars__car_model_id=car_model_id)
 
     def list(self, request, *args, **kwargs):
+
 # Como los metodos se ejecutan despues de que se instancio la vista y
 # luego de producirse la solicitud # uso self.kwargs que tiene los parametros que pase en la solicitud via URL.
         car_model_id = self.kwargs.get('car_model_id')
