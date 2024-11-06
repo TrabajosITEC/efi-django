@@ -143,15 +143,8 @@ msgstr "Register"
 msgid "tus datos"
 msgstr "your data"
 
-#: home/templates/home/login.html:25
-msgid "Ingresá"
-msgstr "Enter"
-
 msgid "Ingresar"
 msgstr "Enter"
-
-msgid "Registrate"
-msgstr "Register"
 
 msgid "Registrate gratis"
 msgstr "Register for free"
@@ -159,10 +152,6 @@ msgstr "Register for free"
 #: home/templates/home/register.html:15
 msgid "Conectate"
 msgstr "Contact"
-
-#: home/templates/home/register.html:15
-msgid "Nosotros"
-msgstr "About Us"
 
 msgid "con nosotros"
 msgstr "whit us"
@@ -175,3 +164,6 @@ msgstr "Do you have an account?"
 #: home/templates/home/register.html:62
 msgid "Iniciá sesión"
 msgstr "Sign in"
+
+msgid "¿No tenés una cuenta?"
+msgstr "Don't have an account?"

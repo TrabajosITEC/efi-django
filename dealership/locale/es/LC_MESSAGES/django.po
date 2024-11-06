@@ -61,7 +61,7 @@ msgstr "Ingresá"
 
 #: home/templates/home/base.html:64
 msgid "Registrate"
-msgstr "Regístrate"
+msgstr "Registrate"
 
 #: home/templates/home/base.html:77
 msgid "¡Hola,"
@@ -142,18 +142,10 @@ msgstr "Regístrate"
 
 #: home/templates/home/login.html:15
 msgid "tus datos"
-msgstr"tus datos"
-
-#: home/templates/home/login.html:25
-msgid "Ingresá"
-msgstr "Ingresá"
+msgstr "tus datos"
 
 msgid "Ingresar"
 msgstr "Ingresar"
-
-#: home/templates/home/login.html:27
-msgid "Registrate"
-msgstr "Regístrate"
 
 msgid "Registrate gratis"
 msgstr "Registrate gratis"
@@ -162,10 +154,6 @@ msgstr "Registrate gratis"
 #: home/templates/home/register.html:15
 msgid "Conectate"
 msgstr "Conectate"
-
-#: home/templates/home/register.html:15
-msgid "Nosotros"
-msgstr "Nosotros"
 
 msgid "con nosotros"
 msgstr "con nosotros"
@@ -177,3 +165,6 @@ msgstr "¿Ya tenés cuenta?"
 #: home/templates/home/register.html:62
 msgid "Iniciá sesión"
 msgstr "Iniciá sesión"
+
+msgid "¿No tenés una cuenta?"
+msgstr "¿No tenés una cuenta?"

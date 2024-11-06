@@ -23,8 +23,8 @@
           </div>
           <div class="container-login-btn d-flex justify-content-center aling-items-center">
             <button type="submit" class="btn btn-outline-dark w-50 mb-3">{% trans "Ingresar" %}</button>
-            <a href="{% url 'register' %}" class="text-decoration-none mb-2 ms-4 text-left text-dark register-title">{%
-              trans "¿No tenés una cuenta?" %} <b>{% trans "Registrate gratis" %}</b></a>
+            <a href="{% url 'register' %}" class="text-decoration-none mb-2 ms-4 text-left text-dark register-title">
+              {% trans "¿No tenés una cuenta?" %} <b>{% trans "Registrate gratis" %}</b></a>
           </div>
         </form>
       </div>
