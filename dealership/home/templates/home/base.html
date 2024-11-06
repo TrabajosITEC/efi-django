@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,20 +22,22 @@
           <img class="img-brand" src="{% static 'home/images/Logo.svg' %}" alt="">
         </a>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-dark" href="{% url 'index' %}">Inicio</a>
+            <a class="nav-link text-dark" href="{% url 'index' %}">{% trans "Inicio" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="{% url 'listOffers' %}">Nuestras Ofertas</a>
+            <a class="nav-link text-dark" href="{% url 'listOffers' %}">{% trans "Nuestras Ofertas" %}</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownMenuButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categorías
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownMenuButton" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              {% trans "Categorías" %}
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               {% for name in names_categories %}
@@ -46,16 +49,19 @@
             <img class="hamburguer-logo mx-2" src="{% static 'home/images/list.svg' %}">
           </button>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownProfileButton" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdownProfileButton" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{% static 'home/images/person-lines-fill.svg' %}" alt="">
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownProfileButton">
               {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="dropdown-item text-decoration-none text-dark">Cerrar Sesión</a>
-                {% else %}
-                <a href="{% url 'login' %}" class="dropdown-item text-decoration-none text-dark">Ingresá</a>
-                <hr class="dropdown-divider">
-                <a href="{% url 'register' %}" class="dropdown-item text-decoration-none text-dark">Registrate</a>
+              <a href="{% url 'logout' %}" class="dropdown-item text-decoration-none text-dark">
+                {% trans "Cerrar Sesión" %}</a>
+              {% else %}
+              <a href="{% url 'login' %}" class="dropdown-item text-decoration-none text-dark">{% trans "Ingresá" %}</a>
+              <hr class="dropdown-divider">
+              <a href="{% url 'register' %}" class="dropdown-item text-decoration-none text-dark">
+                {% trans "Registrate" %}</a>
               {% endif %}
             </ul>
           </li>
@@ -68,11 +74,11 @@
     <div class="offcanvas-header">
       <h6 class="offcanvas-title" id="Enable both scrolling & backdrop">
         {% if user.is_authenticated %}
-        ¡Hola, <b>{{username}}!</b>
+        {% trans "¡Hola," %} <b>{{username}}!</b>
         <br>
-        <i>Bienvenido a AutoMundo</i>
+        <i>{% trans "Bienvenido a AutoMundo" %}</i>
         {% else %}
-        <i>Bienvenido a AutoMundo</i>
+        <i>{% trans "Bienvenido a AutoMundo" %}</i>
         {% endif %}
       </h6>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -81,40 +87,43 @@
       {% if user.is_authenticated %}
       {% if user.is_staff %}
       <div>
-        <h6 class="mb-4"><b>Ubicaciones</b></h6>
-        <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">Administrar
-          Ubicaciones</a>
+        <h6 class="mb-4"><b>{% trans "Ubicaciones" %}</b></h6>
+        <a href="{% url 'countries_list' %}" class="link p-2 text-decoration-none text-dark">
+          {% trans "Administrar Ubicaciones" %}</a>
         <hr>
       </div>
       <div>
-        <h6 class="mt-4 mb-4"><b>Vehículos</b></h6>
-        <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Vehículos</a>
+        <h6 class="mt-4 mb-4"><b>{% trans "Vehículos" %}</b></h6>
+        <a href="{% url 'car_list' %}" class="link p-2 text-decoration-none text-dark">
+          {% trans "Administrar Vehículos" %}
+        </a>
         <hr>
       </div>
       <div>
-        <h6 class="mt-4 mb-4"><b>Métodos de Pago</b></h6>
-        <a href="{% url 'payments_list' %}" class="link p-2 text-decoration-none text-dark">Administrar Métodos de
-          Pago</a>
+        <h6 class="mt-4 mb-4"><b>{% trans "Métodos de Pago" %}</b></h6>
+        <a href="{% url 'payments_list' %}" class="link p-2 text-decoration-none text-dark">
+          {% trans "Administrar Métodos de Pago" %}</a>
         <hr>
       </div>
       <div>
-        <h6 class="mt-4 mb-4"><b>Ofertas</b></h6>
-        <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Administrar Ofertas</a>
+        <h6 class="mt-4 mb-4"><b>{% trans "Ofertas" %}</b></h6>
+        <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">
+          {% trans "Administrar Ofertas" %}</a>
         <hr>
       </div>
       {% elif not user.is_staff %}
       <div>
-        <a href="{% url 'index' %}" class="link p-2 text-decoration-none text-dark">Inicio</a>
+        <a href="{% url 'index' %}" class="link p-2 text-decoration-none text-dark">{% trans "Inicio" %}</a>
         <hr>
-        <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">Ofertas</a>
+        <a href="{% url 'listOffers' %}" class="link p-2 text-decoration-none text-dark">{% trans "Ofertas" %}</a>
         <hr>
-        <a href="{% url 'logout' %}" class="link p-2 text-decoration-none text-danger">Cerrar Sesión</a>
+        <a href="{% url 'logout' %}" class="link p-2 text-decoration-none text-danger">{% trans "Cerrar Sesión" %}</a>
       </div>
       {% endif %}
       {% else %}
-      <p class="p-2 text-decoration-none text-dark">Nosotros</p>
+      <p class="p-2 text-decoration-none text-dark">{% trans "Nosotros" %}</p>
       <hr>
-      <a href="{% url 'listOffers' %}" class="p-2 text-decoration-none text-dark">Ofertas</a>
+      <a href="{% url 'listOffers' %}" class="p-2 text-decoration-none text-dark">{% trans "Ofertas" %}</a>
       {% endif %}
     </div>
   </div>
@@ -123,11 +132,11 @@
     {% block content %}
     {% endblock %}
   </div>
-  
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous">
-  </script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
