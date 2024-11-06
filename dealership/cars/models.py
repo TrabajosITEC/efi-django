@@ -1,12 +1,13 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 class Brand(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name=_('brand'))
     def __str__(self):
         return  self.name
     
 class CarModel(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,verbose_name=_('model'))
     brand = models.ForeignKey(
         Brand,
         on_delete = models.CASCADE, 
@@ -17,7 +18,7 @@ class CarModel(models.Model):
         return  self.name
 
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200,verbose_name=_('category'))
     def __str__(self):
         return  self.name
     
