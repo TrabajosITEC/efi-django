@@ -1,4 +1,4 @@
-# Evaluación Final Integradora 2024 - Parte I.
+# Evaluación Final Integradora 2024 - Parte I y II.
 
 Ingeniería de Software | ITEC Río Cuarto.
 
@@ -10,6 +10,7 @@ Objetivo: Desarrrollar un sistema web para compra venta de autos utilizando Djan
 - [Desarrollo grafico](#desarrollo-grafico)
 - [Entorno Virtual e Inicio Local](#entorno-virtual-e-inicio-local)
 - [Carga de datos](#carga-de-datos)
+- [Documentacion API](#documentacion-api)
 - [Integrantes](#integrantes)
 
 ## *Fundamento del programa*
@@ -154,6 +155,12 @@ Para verificar la funcionalidad del programa se sugiere el siguiente orden de us
 
 *Nuevamente usando las credenciales del administrador.*
 - Eliminar un comentario en la oferta restante
+
+## *Documentacion API*
+
+Para endpoints de segunda parte de EFI, ingresar con proyecto corriendo a:
+
+<http://localhost:8000/swagger/>
 
 
 ## *Integrantes*
