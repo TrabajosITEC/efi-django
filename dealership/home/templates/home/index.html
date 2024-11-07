@@ -29,8 +29,10 @@
     <span class="sr-only"></span>
   </a>
 </div>
+
 <section class="">
   <div class="container-section-links container d-flex justify-content-center align-items-center mb-5">
+    <!-- Primer div -->
     <a class="links d-flex flex-column align-items-center text-decoration-none text-dark" {% if user.is_authenticated %}
       href="{% url 'createOffers' %}" {% else %} href="{% url 'login' %}" {% endif %}>
       <div class="d-flex justify-content-center align-items-center bg-dark rounded-circle"
@@ -39,8 +41,8 @@
       </div>
       <p class="links text-center mt-2"><b><i>{% trans "Vendé" %}</i></b></p>
     </a>
-  </div>
-  <div class="d-flex flex-column align-items-center">
+
+    <!-- Segundo div -->
     <a class="d-flex flex-column align-items-center text-dark text-decoration-none" {% if user.is_authenticated %}
       id="modal-my-profile" href="{% url 'countries_list' %}" onclick="showMyProfile(event)" {% else %}
       href="{% url 'register' %}" {% endif %}>
@@ -54,8 +56,8 @@
       <p class="links text-center mt-2"><b><i>{% trans "Registrarme" %}</i></b></p>
       {% endif %}
     </a>
-  </div>
-  <div class="d-flex flex-column align-items-center">
+
+    <!-- Tercer div -->
     <a class="links d-flex flex-column align-items-center text-decoration-none text-dark" href="">
       <div class="d-flex justify-content-center align-items-center bg-dark rounded-circle"
         style="height: 100px; width: 100px;">
@@ -64,8 +66,8 @@
       </div>
       <p class="links text-center mt-2"><b><i>{% trans "Nosotros" %}</i></b></p>
     </a>
-  </div>
-  <div class="d-flex flex-column align-items-center">
+
+    <!-- Cuarto div -->
     <a class="links d-flex flex-column align-items-center text-decoration-none text-dark" href="{% url 'listOffers' %}">
       <div class="d-flex justify-content-center align-items-center bg-dark rounded-circle"
         style="height: 100px; width: 100px;">
@@ -73,7 +75,6 @@
       </div>
       <p class="links text-center mt-2"><b><i>{% trans "Comprá" %}</i></b></p>
     </a>
-  </div>
   </div>
 </section>
 
