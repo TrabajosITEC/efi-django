@@ -62,6 +62,7 @@ INSTALLED_APPS = INSTALLED_APPS + SELF_APPS + EXTERNAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 "dealership.context_processors.all_names_categories",
                 "dealership.context_processors.current_username",
+                "dealership.context_processors.profile_language"
                 
             ],
         },

@@ -5,6 +5,7 @@ from home.views import (
         LogoutView,
         IndexView,
         RegisterView,
+        ChangeLanguage
     )
 
 
@@ -12,5 +13,6 @@ urlpatterns = [
     path(route = '', view = IndexView.as_view(), name = 'index'),
     path(route = 'register/', view = RegisterView.as_view(), name = 'register'),
     path(route = 'login/', view = LoginView.as_view(), name = 'login'),
-    path(route = 'logout/', view = LogoutView.as_view(), name = 'logout')
+    path(route = 'logout/', view = LogoutView.as_view(), name = 'logout'),
+    path(route = 'change_language/', view = ChangeLanguage.as_view(), name = 'change_language'),
 ]

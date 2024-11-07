@@ -11,6 +11,7 @@ from django.views import (
 
 )
 
+from users.models import Profile
 from users.forms import UserRegisterForm
 
 class LoginView(View):
@@ -116,3 +117,16 @@ class IndexView(View):
             )
         
         )
+    
+class ChangeLanguage(View):
+    def get(self, request):
+        profile = Profile.objects.get(user = request.user)
+        lang = profile.language
+
+        if lang == 'es':
+            profile.language = 'en'
+        else:
+            profile.language = 'es'
+        
+        profile.save()
+        return redirect(request.META.get('HTTP_REFERER', 'index'))

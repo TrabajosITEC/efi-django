@@ -7,7 +7,14 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_seller = models.BooleanField(default=False)
-
+    language = models.CharField(
+        max_length=30, 
+        choices=[
+            ('en', ('English')),
+            ('es', ('Español')),
+        ],
+        default='en',
+    )
     def __str__(self):
         return self.user.username
 
